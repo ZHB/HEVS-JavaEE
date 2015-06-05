@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/templates/FlightsTemplate.xhtml">
+    <ui:define name="booking-content">
+		<h:form>
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<h:outputLabel value="Leaving from"></h:outputLabel>
+								<h:selectOneMenu id="book-departure" value="#{bookingBean.departureName}" valueChangeListener="#{bookingBean.departureChanged}" styleClass="form-control" required="true" requiredMessage="Please, select a departure site" >
+					        		<f:selectItem itemLabel="Choose ..." />
+					        		<f:selectItems value="#{bookingBean.departureNameList}"/>
+					        	</h:selectOneMenu>
+					        	<h:message for="book-departure" errorClass="input-error" infoClass="input-info" />
+							</div>
+							<div class="form-group">
+								<h:outputLabel value="Going to"></h:outputLabel>
+								<h:selectOneMenu id="book-arrival" value="#{bookingBean.arrivalName}" valueChangeListener="#{bookingBean.arrivalChanged}" styleClass="form-control" required="true" requiredMessage="Please, select an arrival site">
+					        		<f:selectItem itemLabel="Choose ..." />
+					        		<f:selectItems value="#{bookingBean.arrivalNameList}"/>
+					        	</h:selectOneMenu>
+					        	<h:message for="book-arrival" errorClass="input-error" infoClass="input-info" />
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-7">
+									<div class="form-group">
+										<h:outputLabel value="Departure date" for="book-date"></h:outputLabel>
+										<h:inputText p:type="date" p:placeholder="yyyy-mm-dd" id="book-date" styleClass="form-control" required="true" requiredMessage="Please, enter an estimated date of departure" maxlength="10">
+											<f:convertDateTime pattern="yyyy-mm-dd" type="date"/>
+										</h:inputText> 
+										<h:message for="book-date" errorClass="input-error" infoClass="input-info" />
+									</div>
+								</div>
+								<div class="col-sm-5">
+									<div class="form-group">
+										<h:outputLabel value="D. time" for="book-time"></h:outputLabel>
+										<h:inputText p:type="time" p:placeholder="--:--" id="book-time" styleClass="form-control" required="true" requiredMessage="Please, enter an estimated time of departure" maxlength="5">
+											<f:convertDateTime pattern="HH:mm" type="time"/>
+										</h:inputText>
+										<h:message for="book-time" errorClass="input-error" infoClass="input-info" />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Pilot name</label>
+								<input type="text" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<h:outputLabel value="Sail plane"></h:outputLabel>
+								<h:selectOneMenu value="#{transferBean.sourceClientName}" valueChangeListener="#{bookingBean.planeChanged}" onchange="submit()" styleClass="form-control">
+					        		<f:selectItems value="#{bookingBean.planes}" var="p" itemLabel="#{p.model} (#{p.type})" itemValue="#{p.id}" />
+					        	</h:selectOneMenu>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<h:commandButton value="Book my flight" action="#{bookingBean.performBooking}" styleClass="btn btn-primary pull-right"></h:commandButton>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+    </ui:define>
+    <ui:define name="content">
+    	<div class="flights-top">
+			<h2>Next flights</h2>
+		</div>
+		
+		
+		<div class="flights-content">
+			<c:choose>
+				<c:when test="${ !empty bookingBean.incomingFlights }">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>From</th>
+								<th>To</th>
+								<th>Plane</th>
+							</tr>
+					 	</thead>
+					  	<tbody>
+					    	<c:forEach var="flight" items="${ bookingBean.incomingFlights }"> 
+					    		<tr>
+								  <th scope="row">
+								  	<h:outputText value="${flight.departureDate}">
+					  					<f:convertDateTime type="date" pattern="dd.MM.yyyy à HH:mm"/>
+								  	</h:outputText>
+								  </th>
+								  <td><h:outputText value="${flight.departure.name}" /></td>
+								  <td><h:outputText value="${flight.arrival.name}" /></td>
+								  <td><h:outputText value="${flight.plane.model} (${flight.plane.type})" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<p>No flight booked yet</p>
+				</c:otherwise>
+			</c:choose>
+		</div>
+    </ui:define>
+</ui:composition>
+</html>
+

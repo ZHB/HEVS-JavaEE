@@ -1,0 +1,92 @@
+fieldset {
+	margin-top:20px;
+}
+legend {
+	font-size:1em;
+}
+
+.input-error {
+  color: #ff0000;
+  margin-top: 10px;
+}
+.input-info {
+	color:#bce8f1;
+	margin-top: 10px;
+}
+
+.btn-primary {
+  background: #FFD500;
+  border-color: #F0C900;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+	background: #eec500;
+  border-color: #eec500;
+}
+#top-bar {
+  height: 50px;
+  background: #FFD500;
+}
+.logo {
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+.user-area a {
+  color: #fff;
+  line-height: 3.2em;
+}
+#booking {
+  background: url("./images/main-bg.jpg") no-repeat center top transparent;
+  background-size: cover;
+}
+.booking-container {
+  margin-top: 95px;
+  margin-bottom: 0;
+  border-radius: 5px 5px 0 0;
+}
+.booking-top {
+  border-bottom: 1px solid #F0F0F0;
+}
+.booking-container h1 {
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: bold;
+  line-height: 1em;
+  color: #4A4A4A;
+}
+.booking-container label {
+  color:#848484;
+}
+.booking-content {
+position:relative;
+margin-bottom: -15px;
+}
+
+.booking-top,
+.booking-content {
+padding: 1.5em;
+}
+
+.flights-top {
+  border-bottom: 1px solid #F0F0F0;
+  margin-top: 30px;
+}
+.flights-top h2 {
+  font-size: 1.25em;
+  font-weight: bold;
+  line-height: 1em;
+  color: #4A4A4A;
+}
+
+
+.flights-content .table>thead>tr>th {
+	color:#848484;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+padding:12px 8px;
+}
+
+footer {
+	background:#F7F7F7;
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+	<managed-bean>
+		<managed-bean-name>transferBean</managed-bean-name>
+		<managed-bean-class>ch.hevs.managedbeans.TransferBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>bookingBean</managed-bean-name>
+		<managed-bean-class>ch.hevs.managedbeans.BookingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<display-name>welcomeBank.xhtml</display-name>
+		<from-view-id>/welcomeBank.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>transferForm</from-outcome>
+			<to-view-id>/transferForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>transferForm.xhtml</display-name>
+		<from-view-id>/transferForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>#{transferBean.performTransfer}</from-outcome>
+			<to-view-id>/showTransferResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>flightsList.xhtml</display-name>
+		<from-view-id>/flightsList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>adminForm</from-outcome>
+			<to-view-id>/administration/adminForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{bookingBean.performBooking}</from-action>
+			<from-outcome>#{bookingBean.performBooking}</from-outcome>
+			<to-view-id>/showBookingResult.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+</faces-config>
