@@ -6,12 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 
 import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Gender;
@@ -53,6 +56,9 @@ public class BookingBean
 	@EJB(name = "ClubBean") 
 	private Club club;
 	
+	/**
+	 * 
+	 */
 	@PostConstruct
     public void initialize() {
  		
@@ -78,7 +84,7 @@ public class BookingBean
 	
 		for (Plane p : planes) {
 			planesNameList.add(p.getClass().getCanonicalName());
-		}	
+		}
 		
 		// get incoming flights
 		incomingFlights = club.getIncomingFlights();
@@ -233,13 +239,12 @@ public class BookingBean
 				
 				// notify flight list that a new was saved
 				incomingFlights.add(f);
-				//incomingFlights.notifyAll();
 			}
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
 
-		return "showTransferResult";
+		return "showBookingResult";
 	}
 
 
@@ -250,6 +255,5 @@ public class BookingBean
 
 	public void setIncomingFlights(List<Flight> incomingFlights) {
 		this.incomingFlights = incomingFlights;
-	} 
-	
+	}
 }

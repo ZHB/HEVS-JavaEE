@@ -66,7 +66,7 @@
 						<div class="col-sm-12">
 							<div class="form-group">
 								<h:outputLabel value="Sail plane"></h:outputLabel>
-								<h:selectOneMenu value="#{transferBean.sourceClientName}" valueChangeListener="#{bookingBean.planeChanged}" onchange="submit()" styleClass="form-control">
+								<h:selectOneMenu valueChangeListener="#{bookingBean.planeChanged}" styleClass="form-control">
 					        		<f:selectItems value="#{bookingBean.planes}" var="p" itemLabel="#{p.model} (#{p.type})" itemValue="#{p.id}" />
 					        	</h:selectOneMenu>
 							</div>

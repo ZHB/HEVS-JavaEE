@@ -6,15 +6,14 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+<ui:composition template="/WEB-INF/templates/PageTemplate.xhtml">
     <ui:define name="content">
-        <h:outputLabel value="Transfer result:"></h:outputLabel></h:outputLabel>
-        <br></br>
-        <h:form>
-        <h:commandLink action="flightsList">
-         <h:outputText value="Return to flight list" />
-        </h:commandLink>
-        </h:form>
+    	<div class="flights-top">
+			<h2>Booking flight result</h2>
+		</div>
+		<div class="flights-content">
+        	<h:link value="Return to flights list" outcome="flightsList" />
+        </div>
     </ui:define>
 </ui:composition>
 </html>

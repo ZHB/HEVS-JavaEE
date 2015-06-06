@@ -38,6 +38,13 @@
 			<to-view-id>/showBookingResult.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>showBookingResult.xhtml</display-name>
+		<from-view-id>/showBookingResult.xhtml</from-view-id>
+		<navigation-case>
+			<to-view-id>/flightsList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	
 	
 </faces-config>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+  <title><ui:insert name="title">Default title</ui:insert></title>
+  <link type="text/css" rel="stylesheet" href="./style/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="./style/custom.css" />
+</head>
+
+<body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<header role="banner" id="top-bar">
+	<ui:insert name="header">
+    	<ui:include src="header.inc.xhtml"/>
+    </ui:insert>
+</header>
+<div class="container">
+	<main>
+		<section class="flights-container">
+			<div id="content">
+			  <ui:insert name="content">
+			    	<ui:include src="content.xhtml"/>  
+			  </ui:insert>
+			</div>
+		</section>
+	</main>		
+</div> <!-- /container -->
+<footer role="contentinfo">
+  <ui:insert name="footer">
+		<ui:include src="footer.inc.xhtml"/>
+  </ui:insert>
+</footer>
+</body>
+</html>
