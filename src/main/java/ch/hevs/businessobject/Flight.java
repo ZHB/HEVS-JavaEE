@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	@NamedQuery(
 		name="Flight.getIncoming", 
-		query="SELECT f FROM Flight f WHERE f.departureDate > :minDate"
+		query="SELECT f FROM Flight f WHERE f.departureDate > :minDate ORDER BY f.departureDate ASC"
 	)
 })
 public class Flight {
@@ -125,9 +125,4 @@ public class Flight {
 	public void setArrival(Site arrival) {
 		this.arrival = arrival;
 	}
-	
-	
-	
-	
-	
 }
