@@ -1,6 +1,7 @@
 package ch.hevs.managedbeans;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,15 +13,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 
-import ch.hevs.businessobject.Account;
 import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Gender;
-import ch.hevs.businessobject.Paraglider;
 import ch.hevs.businessobject.Pilot;
 import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
-import ch.hevs.businessobject.SiteType;
-import ch.hevs.businessobject.WingApproval;
 import ch.hevs.clubservice.Club;
 
 /**
@@ -43,7 +40,15 @@ public class BookingBean
 	
 	private List<Flight> incomingFlights;
 	
+	/**
+	 * The flight departure date
+	 */
 	private Date departureDate;
+	
+	/**
+	 * The flight departure time
+	 */
+	private Date departureTime;
 	
 	@EJB(name = "ClubBean") 
 	private Club club;
@@ -170,8 +175,15 @@ public class BookingBean
 
 	public void setDepartureDate(Date departureDate) {
 		
-		System.out.println("############################## " + departureDate + " ###################");
 		this.departureDate = departureDate;
+	}
+
+	public Date getDepartureTime() {
+		return departureTime;
+	}
+
+	public void setDepartureTime(Date departureTime) {
+		this.departureTime = departureTime;
 	}
 
 	public String performBooking() {
@@ -193,10 +205,31 @@ public class BookingBean
 				Pilot pilot = new Pilot("Vincent", "Huck", Gender.MALE, "2386330");
 				
 
+			
+				// converte Java.Date to Java.Calendar
+				Calendar calDepartureTime = Calendar.getInstance();
+				calDepartureTime.setTime(departureTime);
+				
+				Calendar calDepartureDate = Calendar.getInstance();
+				calDepartureDate.setTime(departureDate);
+				
+				System.out.println("######################" + departureTime);
+				
+				
+				// set the departure date/time from the submitted departure date and time
+				Calendar calDepartureDateTime = Calendar.getInstance();
+				calDepartureDateTime.set(
+						calDepartureDate.get(Calendar.YEAR), 
+						calDepartureDate.get(Calendar.MONTH), 
+						calDepartureDate.get(Calendar.DATE), 
+						calDepartureTime.get(Calendar.HOUR_OF_DAY), 
+						calDepartureTime.get(Calendar.MINUTE), 
+						calDepartureTime.get(Calendar.SECOND)
+						);
 				
 				
 				// Save the new flight
-				Flight f = club.bookFlight(departure, arrival, plane, pilot, departureDate);	
+				Flight f = club.bookFlight(departure, arrival, plane, pilot, calDepartureDateTime);	
 				
 				// notify flight list that a new was saved
 				incomingFlights.add(f);

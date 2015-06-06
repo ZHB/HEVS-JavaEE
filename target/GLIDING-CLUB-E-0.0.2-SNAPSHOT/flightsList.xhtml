@@ -47,7 +47,7 @@
 								<div class="col-sm-5">
 									<div class="form-group">
 										<h:outputLabel value="D. time" for="book-time"></h:outputLabel>
-										<h:inputText p:type="time" p:placeholder="--:--" id="book-time" styleClass="form-control" required="true" requiredMessage="Please, enter an estimated time of departure" maxlength="5">
+										<h:inputText value="#{bookingBean.departureTime}" p:type="time" p:placeholder="--:--" id="book-time" styleClass="form-control" required="true" requiredMessage="Please, enter an estimated time of departure" maxlength="5">
 											<f:convertDateTime pattern="HH:mm" type="time"/>
 										</h:inputText>
 										<h:message for="book-time" errorClass="input-error" infoClass="input-info" />
@@ -103,7 +103,7 @@
 								  <th scope="row">
 								  	<h:outputText value="${flight.departureDate}">
 					  					<f:convertDateTime type="date" pattern="dd.MM.yyyy à HH:mm"/>
-								  	</h:outputText>
+								  	</h:outputText> UTC
 								  </th>
 								  <td><h:outputText value="${flight.departure.name}" /></td>
 								  <td><h:outputText value="${flight.arrival.name}" /></td>

@@ -1,5 +1,6 @@
 package ch.hevs.clubservice;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -76,7 +77,7 @@ public interface Club {
 	 * @return
 	 * @throws Exception
 	 */
-	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Date date) throws Exception;
+	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception;
 	
 	
 	/**

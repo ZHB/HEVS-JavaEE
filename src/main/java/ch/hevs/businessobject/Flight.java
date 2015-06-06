@@ -1,5 +1,6 @@
 package ch.hevs.businessobject;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -32,7 +33,7 @@ public class Flight {
 	private Long id;
 	
 	@Column(nullable=true)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date departureDate;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

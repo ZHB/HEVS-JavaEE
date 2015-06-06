@@ -97,10 +97,12 @@ public class ClubBean implements Club {
 	}
 
 	@Override
-	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Date date) throws Exception {
+	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception {
+		
+		
 		
 		Flight f = new Flight();
-		f.setDepartureDate(new java.sql.Date(date.getTime()));
+		f.setDepartureDate(new java.sql.Date(date.getTimeInMillis()));
 		
 		f.defineDeparture(departure);
 		f.defineArrival(arrival);
@@ -122,14 +124,4 @@ public class ClubBean implements Club {
 				.setParameter("minDate", new java.sql.Timestamp(date.getTime()))
 				.getResultList();
 	}
-
-
-	
-	
-
-	
-
-	
-	
-	
 }
