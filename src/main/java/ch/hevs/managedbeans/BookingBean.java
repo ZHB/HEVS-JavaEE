@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 
 import ch.hevs.businessobject.Account;
@@ -25,7 +27,8 @@ import ch.hevs.clubservice.Club;
  * TransferBean.java
  * 
  */
-
+@ManagedBean(name="bookingBean")
+@SessionScoped
 public class BookingBean
 {
 	private List<String> departureNameList;
@@ -39,6 +42,8 @@ public class BookingBean
 	private List<Plane> planes;
 	
 	private List<Flight> incomingFlights;
+	
+	private Date departureDate;
 	
 	@EJB(name = "ClubBean") 
 	private Club club;
@@ -148,8 +153,6 @@ public class BookingBean
 	 * @param e
 	 */
 	public void planeChanged(ValueChangeEvent e) {
-		//planeId = (long) e.getNewValue();
-		
 		planeId = Long.valueOf(e.getNewValue().toString()).longValue();
     }
 
@@ -161,8 +164,16 @@ public class BookingBean
 		this.planeId = planeId;
 	}
 	
-	
-	
+	public Date getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(Date departureDate) {
+		
+		System.out.println("############################## " + departureDate + " ###################");
+		this.departureDate = departureDate;
+	}
+
 	public String performBooking() {
     	
 		
@@ -181,15 +192,15 @@ public class BookingBean
 			
 				Pilot pilot = new Pilot("Vincent", "Huck", Gender.MALE, "2386330");
 				
-				Date date = new Date();
+
 				
 				
 				// Save the new flight
-				Flight f = club.bookFlight(departure, arrival, plane, pilot, date);	
+				Flight f = club.bookFlight(departure, arrival, plane, pilot, departureDate);	
 				
 				// notify flight list that a new was saved
 				incomingFlights.add(f);
-				incomingFlights.notifyAll();
+				//incomingFlights.notifyAll();
 			}
     	} catch (Exception e) {
     		e.printStackTrace();

@@ -9,11 +9,6 @@
 		<managed-bean-class>ch.hevs.managedbeans.TransferBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>bookingBean</managed-bean-name>
-		<managed-bean-class>ch.hevs.managedbeans.BookingBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 	<navigation-rule>
 		<display-name>welcomeBank.xhtml</display-name>
 		<from-view-id>/welcomeBank.xhtml</from-view-id>

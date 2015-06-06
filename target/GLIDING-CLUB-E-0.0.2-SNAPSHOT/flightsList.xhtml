@@ -7,6 +7,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    
 
 <ui:composition template="/WEB-INF/templates/FlightsTemplate.xhtml">
     <ui:define name="booking-content">
@@ -37,8 +38,8 @@
 								<div class="col-sm-7">
 									<div class="form-group">
 										<h:outputLabel value="Departure date" for="book-date"></h:outputLabel>
-										<h:inputText p:type="date" p:placeholder="yyyy-mm-dd" id="book-date" styleClass="form-control" required="true" requiredMessage="Please, enter an estimated date of departure" maxlength="10">
-											<f:convertDateTime pattern="yyyy-mm-dd" type="date"/>
+										<h:inputText value="#{bookingBean.departureDate}" p:type="date" p:placeholder="yyyy-mm-dd" id="book-date" styleClass="form-control" required="true" requiredMessage="Please, enter an estimated date of departure" maxlength="10">
+											<f:convertDateTime pattern="yyyy-M-d" type="date" />
 										</h:inputText> 
 										<h:message for="book-date" errorClass="input-error" infoClass="input-info" />
 									</div>
@@ -97,7 +98,7 @@
 							</tr>
 					 	</thead>
 					  	<tbody>
-					    	<c:forEach var="flight" items="${ bookingBean.incomingFlights }"> 
+					    	<ui:repeat var="flight" value="#{bookingBean.incomingFlights}">
 					    		<tr>
 								  <th scope="row">
 								  	<h:outputText value="${flight.departureDate}">
@@ -108,7 +109,7 @@
 								  <td><h:outputText value="${flight.arrival.name}" /></td>
 								  <td><h:outputText value="${flight.plane.model} (${flight.plane.type})" /></td>
 								</tr>
-							</c:forEach>
+							</ui:repeat>
 						</tbody>
 					</table>
 				</c:when>

@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 import org.hamcrest.core.IsInstanceOf;
 import org.hibernate.Hibernate;
 

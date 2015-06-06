@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
@@ -30,6 +32,7 @@ public class Flight {
 	private Long id;
 	
 	@Column(nullable=true)
+	@Temporal(TemporalType.DATE)
 	private Date departureDate;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
