@@ -17,7 +17,7 @@ import ch.hevs.clubservice.Club;
  */
 @ManagedBean(name="siteBean")
 @NoneScoped
-public class SiteBean
+public class AdminBean
 {
 	private Site site;
 	

@@ -6,20 +6,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
-import javax.persistence.PostPersist;
-import javax.persistence.PostUpdate;
 
 import ch.hevs.businessobject.Flight;
-import ch.hevs.businessobject.Gender;
-import ch.hevs.businessobject.Licence;
 import ch.hevs.businessobject.Pilot;
 import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
@@ -242,12 +234,8 @@ public class BookingBean
 						calDepartureTime.get(Calendar.SECOND)
 						);
 				
-				
 				// Save the new flight
-				Flight f = club.bookAFlight(departure, arrival, plane, pilot, calDepartureDateTime);	
-				
-				// notify flight list that a new was saved
-				//incomingFlights.add(f);
+				club.bookAFlight(departure, arrival, plane, pilot, calDepartureDateTime);	
 			}
     	} catch (Exception e) {
     		e.printStackTrace();

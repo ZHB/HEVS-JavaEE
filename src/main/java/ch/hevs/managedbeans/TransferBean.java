@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.event.ValueChangeEvent;
-import javax.faces.event.ValueChangeEvent;
 
 import ch.hevs.bankservice.Bank;
 import ch.hevs.businessobject.Account;

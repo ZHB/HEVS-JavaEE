@@ -1,12 +1,10 @@
 package ch.hevs.clubservice;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
 
-import ch.hevs.businessobject.Account;
 import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Pilot;
 import ch.hevs.businessobject.Plane;
