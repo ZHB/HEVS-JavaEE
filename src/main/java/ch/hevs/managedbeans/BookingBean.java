@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.persistence.PostPersist;
@@ -28,7 +29,7 @@ import ch.hevs.clubservice.Club;
  * 
  */
 @ManagedBean(name="bookingBean")
-@SessionScoped
+@RequestScoped
 public class BookingBean
 {
 	private List<String> departureNameList;
@@ -238,7 +239,7 @@ public class BookingBean
 				Flight f = club.bookFlight(departure, arrival, plane, pilot, calDepartureDateTime);	
 				
 				// notify flight list that a new was saved
-				incomingFlights.add(f);
+				//incomingFlights.add(f);
 			}
     	} catch (Exception e) {
     		e.printStackTrace();
