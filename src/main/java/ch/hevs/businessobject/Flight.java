@@ -39,15 +39,15 @@ public class Flight {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Pilot pilot;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	private Plane plane;
 	
 	
 	/**
 	 * OneToOne relation
-	 * Client address is obligatory
+	 * Site departure is mandatory
 	 */
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne
 	@JoinColumn(name="fk_site_departure", nullable=false)
 	private Site departure;
 	
@@ -56,7 +56,7 @@ public class Flight {
 	 * OneToOne relation
 	 * Client address is obligatory
 	 */
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne
 	@JoinColumn(name="fk_site_arrival", nullable=false)
 	private Site arrival;
 
