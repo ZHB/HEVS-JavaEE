@@ -17,6 +17,10 @@ import javax.persistence.Table;
 	@NamedQuery(
 		name="Site.getByNameType", 
 		query="SELECT s FROM Site s WHERE s.name = :siteName AND s.type LIKE :siteType"
+	),
+	@NamedQuery(
+		name="Site.getById", 
+		query="SELECT s FROM Site s WHERE s.id = :siteId"
 	)
 })
 public class Site {

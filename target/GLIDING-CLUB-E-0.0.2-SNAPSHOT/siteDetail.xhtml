@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    
+
+<ui:composition template="/WEB-INF/templates/PageTemplate.xhtml">
+    <ui:define name="content">
+    	<div class="flights-top">
+			<h2>Site detail</h2>
+		</div>
+		<div class="flights-content">
+		
+			<h:outputText value="#{siteBean.site.name}" />
+			
+		</div>
+    </ui:define>
+</ui:composition>
+</html>
+

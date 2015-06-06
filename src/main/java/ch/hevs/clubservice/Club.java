@@ -25,6 +25,14 @@ public interface Club {
 	public List<Site> getSites();
 	
 	/**
+	 * Get a site by his id
+	 * 
+	 * @param id Site id
+	 * @return
+	 */
+	public Site getSiteById(long id);
+	
+	/**
 	 * Get a departure site by his name
 	 * 
 	 * @return

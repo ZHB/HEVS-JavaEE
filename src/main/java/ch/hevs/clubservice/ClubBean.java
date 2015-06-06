@@ -124,4 +124,19 @@ public class ClubBean implements Club {
 				.setParameter("minDate", new java.sql.Timestamp(date.getTime()))
 				.getResultList();
 	}
+
+	@Override
+	public Site getSiteById(long id) {
+		Site s = (Site) em.createNamedQuery("Site.getById")
+				.setParameter("siteId", id)
+				.getSingleResult();
+		
+		// lazy initialize flight collection set
+		//Hibernate.initialize(p.getFlights());
+		
+
+		return s;
+	}
+	
+	
 }

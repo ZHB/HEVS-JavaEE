@@ -105,7 +105,11 @@
 					  					<f:convertDateTime type="date" pattern="dd.MM.yyyy à HH:mm"/>
 								  	</h:outputText> UTC
 								  </th>
-								  <td><h:outputText value="${flight.departure.name}" /></td>
+								  <td>
+								  	<h:link value="${flight.departure.name}" outcome="siteDetail">
+							  			<f:param name="id" value="${flight.departure.id}"/>
+							  		</h:link>
+								  </td>
 								  <td><h:outputText value="${flight.arrival.name}" /></td>
 								  <td><h:outputText value="${flight.plane.model} (${flight.plane.type})" /></td>
 								</tr>
