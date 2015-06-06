@@ -15,7 +15,13 @@ import ch.hevs.businessobject.Site;
 @Local
 public interface Club {
 	
-	public List<Flight> getFlights();
+	/**
+	 * Get a Pilot by his callsign
+	 * 
+	 * @param callsign the pilot callsign
+	 * @return
+	 */
+	public Pilot getPilotByCallsign(String callsign);
 	
 	/**
 	 * Get list of all sites arrival and departure
@@ -65,7 +71,7 @@ public interface Club {
 	 * 
 	 * @return list of all planes
 	 */
-	public List<Plane> getAll();
+	public List<Plane> getPlanes();
 	
 	/**
 	 * Get a plane by his ID
@@ -73,7 +79,14 @@ public interface Club {
 	 * @param id
 	 * @return
 	 */
-	public Plane getById(long id);
+	public Plane getPlaneById(long id);
+	
+	/**
+	 * Get a list of all flights
+	 * 
+	 * @return List of flights
+	 */
+	public List<Flight> getFlights();
 	
 	/**
 	 * Book a new flight
@@ -85,8 +98,7 @@ public interface Club {
 	 * @return
 	 * @throws Exception
 	 */
-	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception;
-	
+	public Flight bookAFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception;
 	
 	/**
 	 * Get a list of incoming flights

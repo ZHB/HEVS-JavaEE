@@ -55,8 +55,11 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Pilot name</label>
-								<input type="text" class="form-control" />
+								<h:outputLabel value="Callsign" for="book-pilot"></h:outputLabel>
+								<h:inputText value="#{bookingBean.pilotCallsign}" id="book-pilot"  styleClass="form-control" required="true" requiredMessage="Please, enter a pilot callsign" maxlength="3" validatorMessage="Please, enter your three letter callsign (uppercase)">
+									<f:validateRegex pattern="[A-Z]{3}" />
+								</h:inputText>
+								<h:message for="book-pilot" errorClass="input-error" infoClass="input-info" />
 							</div>
 						</div>
 					</div>
@@ -66,9 +69,11 @@
 						<div class="col-sm-12">
 							<div class="form-group">
 								<h:outputLabel value="Sail plane"></h:outputLabel>
-								<h:selectOneMenu valueChangeListener="#{bookingBean.planeChanged}" styleClass="form-control">
+								<h:selectOneMenu id="book-plane" valueChangeListener="#{bookingBean.planeChanged}" styleClass="form-control" required="true" requiredMessage="Please, select a plane">
+					        		<f:selectItem itemLabel="Choose ..." />
 					        		<f:selectItems value="#{bookingBean.planes}" var="p" itemLabel="#{p.model} (#{p.type})" itemValue="#{p.id}" />
 					        	</h:selectOneMenu>
+					        	<h:message for="book-plane" errorClass="input-error" infoClass="input-info" />
 							</div>
 						</div>
 						<div class="col-sm-12">
@@ -92,6 +97,7 @@
 						<thead>
 							<tr>
 								<th>Date</th>
+								<th>Pilot</th>
 								<th>From</th>
 								<th>To</th>
 								<th>Plane</th>
@@ -106,11 +112,18 @@
 								  	</h:outputText> UTC
 								  </th>
 								  <td>
+								  	<h:outputText value="${flight.pilot.callsign}" />
+								  </td>
+								  <td>
 								  	<h:link value="${flight.departure.name}" outcome="siteDetail">
 							  			<f:param name="id" value="${flight.departure.id}"/>
 							  		</h:link>
 								  </td>
-								  <td><h:outputText value="${flight.arrival.name}" /></td>
+								  <td>
+								  	<h:link value="${flight.arrival.name}" outcome="siteDetail">
+							  			<f:param name="id" value="${flight.arrival.id}"/>
+							  		</h:link>
+								  </td>
 								  <td><h:outputText value="${flight.plane.model} (${flight.plane.type})" /></td>
 								</tr>
 							</ui:repeat>

@@ -16,7 +16,17 @@
 		</div>
 		<div class="flights-content">
 		
-			<h:outputText value="#{siteBean.site.name}" />
+		<div class="bs-example" data-example-id="panel-without-body-with-table">
+		    <div class="panel panel-default">
+		      <!-- Default panel contents -->
+		      <div class="panel-heading"><h:outputText value="#{siteBean.site.name}" /></div>
+				<ul class="list-group">
+				  <li class="list-group-item">Latitude : <h:outputText value="#{siteBean.site.latitude}" /></li>
+				  <li class="list-group-item">Longitude : <h:outputText value="#{siteBean.site.longitude}" /></li>
+				</ul>
+		      
+		    </div>
+		  </div>
 			
 		</div>
     </ui:define>

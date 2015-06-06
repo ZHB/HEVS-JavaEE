@@ -1,7 +1,5 @@
 package ch.hevs.businessobject;
 
-import java.util.HashSet;
-
 import javax.persistence.Entity;
 
 @Entity

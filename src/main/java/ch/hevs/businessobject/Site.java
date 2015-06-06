@@ -6,16 +6,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
+	@NamedQuery(
+			name="Site.getAll", 
+			query="SELECT s FROM Site s WHERE s.type LIKE :siteType"
+	),
 	@NamedQuery(
 		name="Site.getAllByType", 
 		query="SELECT s FROM Site s WHERE s.type LIKE :siteType"
 	),
 	@NamedQuery(
-		name="Site.getByNameType", 
+		name="Site.getByNameAndType", 
 		query="SELECT s FROM Site s WHERE s.name = :siteName AND s.type LIKE :siteType"
 	),
 	@NamedQuery(

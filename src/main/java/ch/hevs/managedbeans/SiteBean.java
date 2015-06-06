@@ -34,7 +34,6 @@ import ch.hevs.clubservice.Club;
 @NoneScoped
 public class SiteBean
 {
-	
 	private Site site;
 	
 	
@@ -48,14 +47,12 @@ public class SiteBean
     public void initialize() {
  		
 		FacesContext fc = FacesContext.getCurrentInstance();
-		long test = Long.parseLong(getSiteParam(fc));
+		long id = Long.parseLong(getSiteParam(fc));
 
-		site = club.getSiteById(test);
+		site = club.getSiteById(id);
     }
 
 	public Site getSite() {
-		
-		
 		return site;
 	}
 
@@ -63,7 +60,12 @@ public class SiteBean
 		this.site = site;
 	}
 	
-	//get value from "f:param"
+	/**
+	 * Get query string value (from f:param)
+	 * 
+	 * @param fc
+	 * @return A Map of params.
+	 */
 	public String getSiteParam(FacesContext fc){
 
 		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();

@@ -19,6 +19,7 @@ import javax.persistence.PostUpdate;
 
 import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Gender;
+import ch.hevs.businessobject.Licence;
 import ch.hevs.businessobject.Pilot;
 import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
@@ -54,6 +55,8 @@ public class BookingBean
 	 */
 	private Date departureTime;
 	
+	private String pilotCallsign;
+	
 	@EJB(name = "ClubBean") 
 	private Club club;
 	
@@ -80,7 +83,7 @@ public class BookingBean
 		}	
 		
 		// create arrival sites name
-		planes = club.getAll();
+		planes = club.getPlanes();
 		planesNameList = new ArrayList<String>();
 	
 		for (Plane p : planes) {
@@ -193,6 +196,14 @@ public class BookingBean
 		this.departureTime = departureTime;
 	}
 
+	public String getPilotCallsign() {
+		return pilotCallsign;
+	}
+
+	public void setPilotCallsign(String pilotCallsign) {
+		this.pilotCallsign = pilotCallsign;
+	}
+
 	public String performBooking() {
     	
 		
@@ -207,11 +218,9 @@ public class BookingBean
 				Site departure = club.getDepartureSiteByName(departureName);
 				Site arrival = club.getArrivalSiteByName(arrivalName);
 				
-				Plane plane = club.getById(planeId);
-			
-				Pilot pilot = new Pilot("Vincent", "Huck", Gender.MALE, "2386330");
+				Plane plane = club.getPlaneById(planeId);
+				Pilot pilot = club.getPilotByCallsign(pilotCallsign);
 				
-
 			
 				// converte Java.Date to Java.Calendar
 				Calendar calDepartureTime = Calendar.getInstance();
@@ -220,7 +229,6 @@ public class BookingBean
 				Calendar calDepartureDate = Calendar.getInstance();
 				calDepartureDate.setTime(departureDate);
 				
-				System.out.println("######################" + departureTime);
 				
 				
 				// set the departure date/time from the submitted departure date and time
@@ -236,7 +244,7 @@ public class BookingBean
 				
 				
 				// Save the new flight
-				Flight f = club.bookFlight(departure, arrival, plane, pilot, calDepartureDateTime);	
+				Flight f = club.bookAFlight(departure, arrival, plane, pilot, calDepartureDateTime);	
 				
 				// notify flight list that a new was saved
 				//incomingFlights.add(f);

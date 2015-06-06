@@ -1,6 +1,5 @@
 package ch.hevs.businessobject;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -14,12 +13,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
-import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
+	@NamedQuery(
+			name="Flight.getAll", 
+			query="SELECT f FROM Flight f"
+	),
 	@NamedQuery(
 		name="Flight.getIncoming", 
 		query="SELECT f FROM Flight f WHERE f.departureDate > :minDate ORDER BY f.departureDate ASC"
@@ -37,7 +39,7 @@ public class Flight {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date departureDate;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Pilot pilot;
 	
 	@ManyToOne
