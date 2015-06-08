@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIParameter;
 
 import ch.hevs.businessobject.Gender;
 import ch.hevs.businessobject.Licence;
@@ -54,8 +55,6 @@ public class ManageBean {
 	public Gender[] getGenders() {
 		return Gender.values();
 	}
-	
-	
 
 	public Long getPilotId() {
 		return pilotId;
@@ -69,25 +68,17 @@ public class ManageBean {
 		return pilot;
 	}
 
-
-
 	public void setPilot(Pilot pilot) {
 		this.pilot = pilot;
 	}
-
-
-
+	
 	public Licence getLicence() {
 		return licence;
 	}
 
-
-
 	public void setLicence(Licence licence) {
 		this.licence = licence;
 	}
-
-
 
 	public List<Pilot> getPilots() {
 		return pilots;
@@ -96,7 +87,6 @@ public class ManageBean {
 	public void setPilots(List<Pilot> pilots) {
 		this.pilots = pilots;
 	}
-	
 	
 	/**
 	 * Add a pilot to DB
@@ -108,16 +98,13 @@ public class ManageBean {
 		return "adminForm";
 	}
 	
-	/**
-	 * Remove a pilot from database
-	 * 
-	 * @param id the pilot id to remove
-	 * @return
-	 */
-	public String removePilot(Long id) {
+	public String removePilot() {	
+		if(pilotId == null) {
+			return null;
+		}
 		
-		//TODO call club service to remove the entity.
-		
-		return "successfullyRemoved";
+		System.out.println("#############" + pilotId);
+		club.removePilot(pilotId);
+		return "adminForm";
 	}
 }

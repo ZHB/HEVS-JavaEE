@@ -130,13 +130,10 @@ public class ClubBean implements Club {
 	@Override
 	public Pilot addOrUpdatePilot(Pilot pilot, Licence licence) {
 
-		System.out.println("@@@@@@@@@@@@@@@@@@@@" + pilot.getId());
 		// add the pilote licence
 		pilot.addLicence(licence);
-	
-		em.merge(pilot);
-		//em.persist(pilot);
-		
+
+		em.merge(pilot);		
 		em.flush();
 		
 		return pilot;
@@ -168,5 +165,12 @@ public class ClubBean implements Club {
 	@Override
 	public Pilot getPilotById(Long id) {
 		return em.find(Pilot.class, id);
+	}
+
+	@Override
+	public void removePilot(Long id) {
+		Pilot p = em.find(Pilot.class, id);
+	    em.remove(p);
+		em.flush();
 	}
 }

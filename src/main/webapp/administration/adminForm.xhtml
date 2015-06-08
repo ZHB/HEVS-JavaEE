@@ -7,6 +7,10 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<f:metadata>
+    <f:viewParam name="id" value="#{manageBean.pilotId}"/>
+    <f:viewAction action="#{manageBean.removePilot}"/>
+</f:metadata>
 <ui:composition template="/WEB-INF/templates/AdminTemplate.xhtml">
     <ui:define name="content">
     	<div class="flights-top">
@@ -16,48 +20,52 @@
 			<h3>Pilots list</h3>
 			<c:choose>
 				<c:when test="#{ !empty manageBean.pilots }">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Callsign</th>
-								<th>Firstname</th>
-								<th>Lastname</th>
-								<th>Licence number</th>
-								<th>Licence expiration date</th>
-								<th></th>
-							</tr>
-					 	</thead>
-					  	<tbody>
-					    	<c:forEach var="pilot" items="#{ manageBean.pilots }"> 
-					    		<tr>
-								  <th scope="row">
-								  		<h:outputText value="${pilot.callsign}" />
-								  </th>
-								  <td>
-								  	<h:outputText value="${pilot.firstname}" />
-								  </td>
-								  <td>
-								  	<h:outputText value="${pilot.lastname}" />
-								  </td>
-								  <td>
-								  	<h:outputText value="${pilot.licence.certificationNumber}" />
-								  </td>
-								  <td>
-								  	<h:outputText value="${pilot.licence.dateOfIssue}" />
-								  </td>
-								  <td>
-								  	<h:link value="Update" outcome="pilotForm">
-							  			<f:param name="id" value="${pilot.id}" />
-							  		</h:link>
-							  		 - 
-								  	<h:link value="Delete" outcome="adminForm" onclick="alert('Confirm delete ?');">
-							  			<f:param name="id" value="${pilot.id}" />
-							  		</h:link>
-								  </td>
+					<h:form>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Callsign</th>
+									<th>Firstname</th>
+									<th>Lastname</th>
+									<th>Licence number</th>
+									<th>Licence expiration date</th>
+									<th></th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+						 	</thead>
+						  	<tbody>
+						    	<c:forEach var="pilot" items="#{ manageBean.pilots }"> 
+						    		<tr>
+									  <th scope="row">
+									  		<h:outputText value="${pilot.callsign}" />
+									  </th>
+									  <td>
+									  	<h:outputText value="${pilot.firstname}" />
+									  </td>
+									  <td>
+									  	<h:outputText value="${pilot.lastname}" />
+									  </td>
+									  <td>
+									  	<h:outputText value="${pilot.licence.certificationNumber}" />
+									  </td>
+									  <td>
+									  	<h:outputText value="${pilot.licence.dateOfIssue}">
+									  		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+									  	</h:outputText>
+									  </td>
+									  <td>
+									  	<h:link value="Update" outcome="pilotForm">
+								  			<f:param name="id" value="${pilot.id}" />
+								  		</h:link>
+								  		 - 
+									  	<h:link value="Delete" outcome="adminForm" onclick="alert('Confirm delete ?');">
+								  			<f:param name="id" value="${pilot.id}" />
+								  		</h:link>
+									  </td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</h:form>
 				</c:when>
 				<c:otherwise>
 					<p>No pilot</p>
