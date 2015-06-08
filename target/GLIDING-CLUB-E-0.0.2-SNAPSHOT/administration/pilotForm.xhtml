@@ -77,11 +77,12 @@
 								<f:convertDateTime pattern="yyyy-M-d" type="date" />
 							</h:inputText>
 							<h:message for="pilot-licence-expiration-date" errorClass="input-error" infoClass="input-info" />
+					    	<h:inputHidden value="#{manageBean.pilot.id}" />
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
-					    	<h:commandButton value="Save" action="#{manageBean.addPilot}" styleClass="btn btn-primary" />
+					    	<h:commandButton value="Save" action="#{manageBean.addOrUpdatePilot}" styleClass="btn btn-primary" />
 					    </div>
 					  </div>
 			 	</fieldset>

@@ -90,7 +90,7 @@ public interface Club {
 	 * @param licence
 	 * @return
 	 */
-	public Pilot addPilot(Pilot pilot, Licence licence);
+	public Pilot addOrUpdatePilot(Pilot pilot, Licence licence);
 	
 	
 	/**

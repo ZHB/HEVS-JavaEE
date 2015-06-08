@@ -97,12 +97,13 @@ public class ManageBean {
 		this.pilots = pilots;
 	}
 	
+	
 	/**
 	 * Add a pilot to DB
 	 * @return
 	 */
-	public String addPilot() {
-		club.addPilot(pilot, licence);
+	public String addOrUpdatePilot() {
+		club.addOrUpdatePilot(pilot, licence);
 		
 		return "adminForm";
 	}

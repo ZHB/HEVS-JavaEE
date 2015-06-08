@@ -50,7 +50,7 @@
 							  			<f:param name="id" value="${pilot.id}" />
 							  		</h:link>
 							  		 - 
-								  	<h:link value="Delete" outcome="adminForm">
+								  	<h:link value="Delete" outcome="adminForm" onclick="alert('Confirm delete ?');">
 							  			<f:param name="id" value="${pilot.id}" />
 							  		</h:link>
 								  </td>
@@ -68,7 +68,7 @@
 					<h:form>
 						<div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
-						    	<h:link value="Add" outcome="adminForm" styleClass="btn btn-primary pull-right"></h:link>
+						    	<h:link value="Add" outcome="pilotForm" styleClass="btn btn-primary pull-right"></h:link>
 						    </div>
 						  </div>
 					</h:form>

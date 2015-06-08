@@ -126,14 +126,18 @@ public class ClubBean implements Club {
 				.setParameter("minDate", new java.sql.Timestamp(calDepartureDate.getTimeInMillis()))
 				.getResultList();
 	}
-
+	
 	@Override
-	public Pilot addPilot(Pilot pilot, Licence licence) {
+	public Pilot addOrUpdatePilot(Pilot pilot, Licence licence) {
 
+		System.out.println("@@@@@@@@@@@@@@@@@@@@" + pilot.getId());
 		// add the pilote licence
 		pilot.addLicence(licence);
 	
-		em.persist(pilot);
+		em.merge(pilot);
+		//em.persist(pilot);
+		
+		em.flush();
 		
 		return pilot;
 	}
@@ -165,6 +169,4 @@ public class ClubBean implements Club {
 	public Pilot getPilotById(Long id) {
 		return em.find(Pilot.class, id);
 	}
-	
-	
 }
