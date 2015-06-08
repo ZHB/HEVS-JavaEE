@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 	),
 	@NamedQuery(
 		name="Flight.getIncoming", 
-		query="SELECT f FROM Flight f WHERE f.departureDate > :minDate ORDER BY f.departureDate ASC"
+		query="SELECT f FROM Flight f WHERE f.departureDate >= :minDate ORDER BY f.departureDate ASC"
 	)
 })
 public class Flight {
@@ -39,18 +39,18 @@ public class Flight {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date departureDate;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Pilot pilot;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private Plane plane;
 	
 	
 	/**
 	 * OneToOne relation
-	 * Site departure is mandatory
+	 * Client address is obligatory
 	 */
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="fk_site_departure", nullable=false)
 	private Site departure;
 	
@@ -59,7 +59,7 @@ public class Flight {
 	 * OneToOne relation
 	 * Client address is obligatory
 	 */
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="fk_site_arrival", nullable=false)
 	private Site arrival;
 
@@ -128,4 +128,9 @@ public class Flight {
 	public void setArrival(Site arrival) {
 		this.arrival = arrival;
 	}
+	
+	
+	
+	
+	
 }

@@ -7,9 +7,6 @@
 
 	<persistence-unit name="bankPU">
 		<jta-data-source>java:/labsDS</jta-data-source>
-		
-		<class>ch.hevs.businessobject.Client</class>
-		<class>ch.hevs.businessobject.Account</class>
 		<class>ch.hevs.businessobject.Pilot</class>
 		<class>ch.hevs.businessobject.Plane</class>
 		<class>ch.hevs.businessobject.Flight</class>

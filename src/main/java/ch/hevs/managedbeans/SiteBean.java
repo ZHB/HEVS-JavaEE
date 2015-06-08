@@ -11,10 +11,6 @@ import javax.faces.context.FacesContext;
 import ch.hevs.businessobject.Site;
 import ch.hevs.clubservice.Club;
 
-/**
- * TransferBean.java
- * 
- */
 @ManagedBean(name="siteBean")
 @NoneScoped
 public class SiteBean
@@ -33,8 +29,8 @@ public class SiteBean
  		
 		FacesContext fc = FacesContext.getCurrentInstance();
 		long id = Long.parseLong(getSiteParam(fc));
-
-		site = club.getSiteById(id);
+		
+		site = club.findById(id);
     }
 
 	public Site getSite() {
@@ -54,7 +50,8 @@ public class SiteBean
 	public String getSiteParam(FacesContext fc){
 
 		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+		
 		return params.get("id");
- 
 	}
 }
+

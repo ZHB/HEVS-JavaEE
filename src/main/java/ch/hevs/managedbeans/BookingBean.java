@@ -7,9 +7,12 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.event.ValueChangeEvent;
+import javax.faces.context.FacesContext;
 
 import ch.hevs.businessobject.Flight;
 import ch.hevs.businessobject.Pilot;
@@ -25,17 +28,18 @@ import ch.hevs.clubservice.Club;
 @RequestScoped
 public class BookingBean
 {
-	private List<String> departureNameList;
-	private String departureName;
-	private List<String> arrivalNameList;
-	private String arrivalName;
-	
+	private String planeName;
 	private long planeId;
 	
-	private List<String> planesNameList;	
-	private List<Plane> planes;
 	
 	private List<Flight> incomingFlights;
+	
+	private Plane plane;
+	private Site departureSite;
+	private Site arrivalSite;
+	private List<Plane> planes;
+	private List<Site> departureSites;
+	private List<Site> arrivalSites;
 	
 	/**
 	 * The flight departure date
@@ -52,40 +56,60 @@ public class BookingBean
 	@EJB(name = "ClubBean") 
 	private Club club;
 	
-	/**
-	 * 
-	 */
 	@PostConstruct
     public void initialize() {
  		
-		// create departure sites name
-		List<Site> departureSites = club.getDepartureSites();
-		departureNameList = new ArrayList<String>();
-	
-		for (Site d : departureSites) {
-			departureNameList.add(d.getName());
-		}	
-		
-		// create arrival sites name
-		List<Site> arrivalSites = club.getArrivalSites();
-		arrivalNameList = new ArrayList<String>();
-	
-		for (Site a : arrivalSites) {
-			arrivalNameList.add(a.getName());
-		}	
-		
-		// create arrival sites name
-		planes = club.getPlanes();
-		planesNameList = new ArrayList<String>();
-	
-		for (Plane p : planes) {
-			planesNameList.add(p.getClass().getCanonicalName());
-		}
+		// create lists for dropdown menu
+		departureSites = club.getDepartureSites();
+		arrivalSites = club.getArrivalSites();
+		planes = club.getAll();
+
 		
 		// get incoming flights
+		incomingFlights = new ArrayList<Flight>();
 		incomingFlights = club.getIncomingFlights();
     }
 	
+	public Plane getPlane() {
+		return plane;
+	}
+
+	public void setPlane(Plane plane) {
+		this.plane = plane;
+	}
+
+	public Site getDepartureSite() {
+		return departureSite;
+	}
+
+	public void setDepartureSite(Site departureSite) {		
+		this.departureSite = departureSite;
+	}
+
+	public Site getArrivalSite() {
+		return arrivalSite;
+	}
+
+	public void setArrivalSite(Site arrivalSite) {
+		this.arrivalSite = arrivalSite;
+	}
+
+	public List<Site> getDepartureSites() {
+		return departureSites;
+	}
+
+	public void setDepartureSites(List<Site> departureSites) {
+		this.departureSites = departureSites;
+	}
+
+	public List<Site> getArrivalSites() {
+		return arrivalSites;
+	}
+
+	public void setArrivalSites(List<Site> arrivalSites) {
+		this.arrivalSites = arrivalSites;
+	}
+
 	public List<Plane> getPlanes() {
 		return planes;
 	}
@@ -94,81 +118,32 @@ public class BookingBean
 		this.planes = planes;
 	}
 
-	public List<String> getDepartureNameList() {
-		return departureNameList;
+	public String getPlaneName() {
+		return planeName;
 	}
 
-	public void setDepartureNameList(List<String> departureNameList) {
-		this.departureNameList = departureNameList;
+	public void setPlaneName(String planeName) {
+		// update plane id
+		planeId = Long.valueOf(planeName).longValue();
+		
+		this.planeName = planeName;
 	}
-
-	public List<String> getArrivalNameList() {
-		return arrivalNameList;
-	}
-
-	public void setArrivalNameList(List<String> arrivalNameList) {
-		this.arrivalNameList = arrivalNameList;
-	}
-
-	public List<String> getPlanesNameList() {
-		return planesNameList;
-	}
-
-	public void setPlanesNameList(List<String> planesNameList) {
-		this.planesNameList = planesNameList;
-	}
-   
-	/**
-	 * Set selected value on list change
-	 * 
-	 * @param e
-	 */
-	public void departureChanged(ValueChangeEvent e) {
-    	departureName = e.getNewValue().toString();
-    }
-
-	public String getDepartureName() {
-		return this.departureName;
-	}
-	
-	public void setDepartureName(String departureName) {
-		this.departureName = departureName;
-	}
-	
-
-	/**
-	 * Set selected value on list change
-	 * 
-	 * @param e
-	 */
-	public void arrivalChanged(ValueChangeEvent e) {
-    	arrivalName = e.getNewValue().toString();
-    }
-
-	public String getArrivalName() {
-		return this.arrivalName;
-	}
-	
-	public void setArrivalName(String arrivalName) {
-		this.arrivalName = arrivalName;
-	}
-	
-	
-	/**
-	 * Set selected value on list change
-	 * 
-	 * @param e
-	 */
-	public void planeChanged(ValueChangeEvent e) {
-		planeId = Long.valueOf(e.getNewValue().toString()).longValue();
-    }
 
 	public double getPlaneId() {
 		return this.planeId;
 	}
 	
 	public void setPlaneId(long planeId) {
+		
 		this.planeId = planeId;
+	}
+	
+	public String getPilotCallsign() {
+		return pilotCallsign;
+	}
+
+	public void setPilotCallsign(String pilotCallsign) {
+		this.pilotCallsign = pilotCallsign;
 	}
 	
 	public Date getDepartureDate() {
@@ -176,7 +151,6 @@ public class BookingBean
 	}
 
 	public void setDepartureDate(Date departureDate) {
-		
 		this.departureDate = departureDate;
 	}
 
@@ -188,39 +162,34 @@ public class BookingBean
 		this.departureTime = departureTime;
 	}
 
-	public String getPilotCallsign() {
-		return pilotCallsign;
-	}
-
-	public void setPilotCallsign(String pilotCallsign) {
-		this.pilotCallsign = pilotCallsign;
-	}
-
+	/**
+	 * Perform a new flight booking
+	 * 
+	 * @return
+	 */
 	public String performBooking() {
-    	
-		
     	try {
-			if (departureName.isEmpty() || arrivalName.isEmpty()) {
-				System.out.print("Arrival or departure are empty");
-			} else if(departureName.equals(arrivalName)) {
-				System.out.print("Departure and arrival are identical !");
+			if(departureSite == null || arrivalSite == null) {
+				FacesMessage message = new FacesMessage( "Please, select a departure and arrival site");
+		        FacesContext.getCurrentInstance().addMessage( null, message );
 			} else {
 				
-				// get arrival and departure Sites by dropdown list value
-				Site departure = club.getDepartureSiteByName(departureName);
-				Site arrival = club.getArrivalSiteByName(arrivalName);
 				
-				Plane plane = club.getPlaneById(planeId);
+				//Plane plane = club.getById(planeId);
+				
+				// get the pilot by his callsign
 				Pilot pilot = club.getPilotByCallsign(pilotCallsign);
+				if(pilot == null) {
+					FacesMessage message = new FacesMessage( "No pilot found with " + pilotCallsign + " callsign");
+			        FacesContext.getCurrentInstance().addMessage( null, message );
+				}
 				
-			
 				// converte Java.Date to Java.Calendar
 				Calendar calDepartureTime = Calendar.getInstance();
 				calDepartureTime.setTime(departureTime);
 				
 				Calendar calDepartureDate = Calendar.getInstance();
 				calDepartureDate.setTime(departureDate);
-				
 				
 				
 				// set the departure date/time from the submitted departure date and time
@@ -234,17 +203,17 @@ public class BookingBean
 						calDepartureTime.get(Calendar.SECOND)
 						);
 				
-				// Save the new flight
-				club.bookAFlight(departure, arrival, plane, pilot, calDepartureDateTime);	
+				// Save the new flight and redirect to new page (see faces-config.xml)
+				if(club.bookFlight(departureSite, arrivalSite, plane, pilot, calDepartureDateTime) != null) {
+					return "bookingSuccess";
+				} 
 			}
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
 
-		return "showBookingResult";
+    	return "bookingError";
 	}
-
-
 
 	public List<Flight> getIncomingFlights() {
 		return incomingFlights;

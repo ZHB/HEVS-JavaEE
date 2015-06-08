@@ -1,5 +1,6 @@
 package ch.hevs.businessobject;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,12 +18,6 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-@NamedQueries({
-	@NamedQuery(
-		name="Plane.getById", 
-		query="SELECT p FROM Plane p WHERE p.id = :planeId"
-	)
-})
 public class Plane {
 
 	@Id
@@ -36,18 +31,15 @@ public class Plane {
 	@OneToMany(mappedBy="plane", cascade = CascadeType.ALL)
 	protected Set<Flight> flights;
 	
-	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Pilot> pilots;
 	
-
 	public Plane() {
 		super();
 		
 		flights = new HashSet<Flight>();
 	}
 	
-
 	public Long getId() {
 		return id;
 	}
@@ -80,10 +72,6 @@ public class Plane {
 		this.price = price;
 	}
 
-	
-
-
-
 	public Set<Flight> getFlights() {
 		return flights;
 	}
@@ -97,4 +85,11 @@ public class Plane {
 		flights.add(f);		
 		f.setPlane(this);
 	}	
+	
+	@Override
+	public boolean equals(Object object) {
+        return (object instanceof Plane) && (id != null) 
+             ? id.equals(((Plane) object).id) 
+             : (object == this);
+    }
 }

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<f:metadata>
+    <f:viewParam name="id" value="#{manageBean.pilotId}"/>
+    <f:viewAction action="#{manageBean.loadPilot}"/>
+</f:metadata>
+<ui:composition template="/WEB-INF/templates/AdminTemplate.xhtml">
+    <ui:define name="content">
+    	<div class="flights-top">
+			<h2>Admin area</h2>
+		</div>
+		<div class="flights-content">
+			<h:form styleClass="form-horizontal">
+				<fieldset>
+	    			<legend>Add a pilot</legend>
+	   					<div class="form-group">
+	   						<div class="col-sm-2">
+						    	<h:outputLabel value="Gender" for="pilot-gender"></h:outputLabel>
+						    </div>
+							<div class="col-sm-10">
+								<h:selectOneMenu value="#{manageBean.pilot.gender}" id="pilot-gender" styleClass="form-control" >
+					        		<f:selectItem itemLabel="Choose ..." />
+					        		<f:selectItems value="#{manageBean.genders}" var="status" itemValue="#{status}" itemLabel="#{status}" />
+					        	</h:selectOneMenu>
+					        	<h:message for="pilot-gender" errorClass="input-error" infoClass="input-info" />
+					        </div>
+						 </div>
+					  <div class="form-group">
+						  	<div class="col-sm-2">
+						    	<h:outputLabel value="Callsign" for="pilot-callsign"></h:outputLabel>
+						    </div>
+						    <div class="col-sm-10">
+						      	<h:inputText value="#{manageBean.pilot.callsign}" id="pilot-callsign" styleClass="form-control" />
+								<h:message for="pilot-callsign" errorClass="input-error" infoClass="input-info" />
+						    </div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-2">
+					    	<h:outputLabel value="Firstname" for="pilot-firstname"></h:outputLabel>
+				    	</div>
+					    <div class="col-sm-10">
+					     	<h:inputText value="#{manageBean.pilot.firstname}" id="pilot-firstname" styleClass="form-control" />
+							<h:message for="pilot-firstname" errorClass="input-error" infoClass="input-info" />
+					    </div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-2">
+					    	<h:outputLabel value="Lastname" for="pilot-lastname"></h:outputLabel>
+					    </div>
+					    <div class="col-sm-10">
+					     	<h:inputText value="#{manageBean.pilot.lastname}" id="pilot-lastname" styleClass="form-control" />
+							<h:message for="pilot-lastname" errorClass="input-error" infoClass="input-info" />
+					    </div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-2">
+					    	<h:outputLabel value="Licence number" for="pilot-licence-number"></h:outputLabel>
+					    </div>
+					    <div class="col-sm-10">
+					     	<h:inputText value="#{manageBean.licence.certificationNumber}" id="pilot-licence-number" styleClass="form-control" />
+							<h:message for="pilot-licence-number" errorClass="input-error" infoClass="input-info" />
+					    </div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-2">
+					    	<h:outputLabel value="Licence expiration date" for="pilot-licence-expiration-date"></h:outputLabel>
+					    </div>
+					    <div class="col-sm-10">
+					    	<h:inputText value="#{manageBean.licence.dateOfIssue}" p:type="date" id="pilot-licence-expiration-date" styleClass="form-control" required="true">
+								<f:convertDateTime pattern="yyyy-M-d" type="date" />
+							</h:inputText>
+							<h:message for="pilot-licence-expiration-date" errorClass="input-error" infoClass="input-info" />
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="col-sm-offset-2 col-sm-10">
+					    	<h:commandButton value="Save" action="#{manageBean.addPilot}" styleClass="btn btn-primary" />
+					    </div>
+					  </div>
+			 	</fieldset>
+			</h:form>
+		</div>
+    </ui:define>
+</ui:composition>
+</html>

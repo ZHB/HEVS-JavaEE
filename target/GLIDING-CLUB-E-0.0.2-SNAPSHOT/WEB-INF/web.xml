@@ -2,7 +2,11 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>TestBanqueSecurity</display-name>
   <description></description>
-  
+
+	<context-param>
+	    <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+	    <param-value>true</param-value>
+	</context-param>
   <context-param>
     <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
     <param-value>.jsp</param-value>
@@ -32,7 +36,7 @@
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>welcomeBank.xhtml</welcome-file>
+    <welcome-file>flightsList.xhtml</welcome-file>
   </welcome-file-list>
   <env-entry>
     <env-entry-name>jsf/ClientSideSecretKey</env-entry-name>

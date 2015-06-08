@@ -1,11 +1,13 @@
 package ch.hevs.clubservice;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
 
 import ch.hevs.businessobject.Flight;
+import ch.hevs.businessobject.Licence;
 import ch.hevs.businessobject.Pilot;
 import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
@@ -21,34 +23,16 @@ public interface Club {
 	 */
 	public Pilot getPilotByCallsign(String callsign);
 	
+	public List<Pilot> getPilots();
+	
+	public List<Flight> getFlights();
+	
 	/**
 	 * Get list of all sites arrival and departure
 	 * 
 	 * @return list of sites
 	 */
 	public List<Site> getSites();
-	
-	/**
-	 * Get a site by his id
-	 * 
-	 * @param id Site id
-	 * @return
-	 */
-	public Site getSiteById(long id);
-	
-	/**
-	 * Get a departure site by his name
-	 * 
-	 * @return
-	 */
-	public Site getDepartureSiteByName(String name);
-	
-	/**
-	 * Get arrival site by his name
-	 * 
-	 * @return
-	 */
-	public Site getArrivalSiteByName(String name);
 	
 	/**
 	 * Get list of all departure sites
@@ -69,7 +53,7 @@ public interface Club {
 	 * 
 	 * @return list of all planes
 	 */
-	public List<Plane> getPlanes();
+	public List<Plane> getAll();
 	
 	/**
 	 * Get a plane by his ID
@@ -77,14 +61,7 @@ public interface Club {
 	 * @param id
 	 * @return
 	 */
-	public Plane getPlaneById(long id);
-	
-	/**
-	 * Get a list of all flights
-	 * 
-	 * @return List of flights
-	 */
-	public List<Flight> getFlights();
+	public Plane getById(long id);
 	
 	/**
 	 * Book a new flight
@@ -96,7 +73,8 @@ public interface Club {
 	 * @return
 	 * @throws Exception
 	 */
-	public Flight bookAFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception;
+	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception;
+	
 	
 	/**
 	 * Get a list of incoming flights
@@ -104,4 +82,26 @@ public interface Club {
 	 * @return
 	 */
 	public List<Flight> getIncomingFlights();
+	
+	/**
+	 * Add a new pilot with his licence
+	 * 
+	 * @param pilot
+	 * @param licence
+	 * @return
+	 */
+	public Pilot addPilot(Pilot pilot, Licence licence);
+	
+	
+	/**
+	 * Find a site by his Id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	 public Site findById(Long id);
+	 
+	 public Plane findPlaneById(Long id);
+	 
+	 public Pilot getPilotById(Long id);
 }

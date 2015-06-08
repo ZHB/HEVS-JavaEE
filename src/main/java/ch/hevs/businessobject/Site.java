@@ -1,11 +1,14 @@
 package ch.hevs.businessobject;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
@@ -16,17 +19,9 @@ import javax.persistence.NamedQuery;
 	@NamedQuery(
 		name="Site.getAllByType", 
 		query="SELECT s FROM Site s WHERE s.type LIKE :siteType"
-	),
-	@NamedQuery(
-		name="Site.getByNameAndType", 
-		query="SELECT s FROM Site s WHERE s.name = :siteName AND s.type LIKE :siteType"
-	),
-	@NamedQuery(
-		name="Site.getById", 
-		query="SELECT s FROM Site s WHERE s.id = :siteId"
 	)
 })
-public class Site {
+public class Site implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -89,5 +84,11 @@ public class Site {
 		this.type = type;
 	}
 	
+	@Override
+	public boolean equals(Object object) {
+        return (object instanceof Site) && (id != null) 
+             ? id.equals(((Site) object).id) 
+             : (object == this);
+    }
 	
 }
