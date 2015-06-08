@@ -1,32 +1,22 @@
 package ch.hevs.clubservice;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import javax.persistence.Query;
 
-import org.hamcrest.core.IsInstanceOf;
 import org.hibernate.Hibernate;
 
 import ch.hevs.businessobject.Flight;
-import ch.hevs.businessobject.Hanglider;
 import ch.hevs.businessobject.Licence;
-import ch.hevs.businessobject.Paraglider;
 import ch.hevs.businessobject.Pilot;
 import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
 import ch.hevs.businessobject.SiteType;
-import ch.hevs.businessobject.WingApproval;
 
 @Stateless
 public class ClubBean implements Club {
