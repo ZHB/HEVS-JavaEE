@@ -1,6 +1,5 @@
 package ch.hevs.businessobject;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -24,13 +22,33 @@ public class Plane {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	/**
+	 * The plane type human readable
+	 */
+	@NotNull(message = "Please, enter a plane type")
 	protected String type;
+	
+	/**
+	 * The plane model
+	 */
+	@NotNull(message = "Please, enter a plane model")
 	private String model;
+	
+	/**
+	 * The plane price
+	 */
+	@NotNull(message = "Please, enter a plane price")
 	private double price;
 	
+	/**
+	 * The flights that did the plane
+	 */
 	@OneToMany(mappedBy="plane", cascade = CascadeType.ALL)
 	protected Set<Flight> flights;
 	
+	/**
+	 * The plane owner
+	 */
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Pilot> pilots;
 	
@@ -79,7 +97,6 @@ public class Plane {
 	public void setFlights(Set<Flight> flights) {
 		this.flights = flights;
 	}
-
 
 	public void addFlight(Flight f) {
 		flights.add(f);		
