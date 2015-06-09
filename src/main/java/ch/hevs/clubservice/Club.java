@@ -18,33 +18,43 @@ public interface Club {
 	/**
 	 * Get a Pilot by his callsign
 	 * 
-	 * @param callsign the pilot callsign
-	 * @return
+	 * @param callsign	the pilot callsign
+	 * @return the pilot
 	 */
 	public Pilot getPilotByCallsign(String callsign);
 	
+	/**
+	 * Get all pilots list
+	 * 
+	 * @return	a <code>List</code> of planes
+	 */
 	public List<Pilot> getPilots();
 	
+	/**
+	 * Get all flights list
+	 * 
+	 * @return a <code>List</code> of flights
+	 */
 	public List<Flight> getFlights();
 	
 	/**
 	 * Get list of all sites arrival and departure
 	 * 
-	 * @return list of sites
+	 * @return <code>List</code> of sites
 	 */
 	public List<Site> getSites();
 	
 	/**
 	 * Get list of all departure sites
 	 * 
-	 * @return list of departure sites
+	 * @return <code>List</code> of departure sites
 	 */
 	public List<Site> getDepartureSites();
 	
 	/**
 	 * Get list of all arrival sites
 	 * 
-	 * @return list of arrival sites
+	 * @return <code>List</code> of arrival sites
 	 */
 	public List<Site> getArrivalSites();
 	
@@ -53,15 +63,8 @@ public interface Club {
 	 * 
 	 * @return list of all planes
 	 */
-	public List<Plane> getAll();
+	public List<Plane> getPlanes();
 	
-	/**
-	 * Get a plane by his ID
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Plane getById(long id);
 	
 	/**
 	 * Book a new flight

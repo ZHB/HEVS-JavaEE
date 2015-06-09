@@ -49,7 +49,7 @@ public class Plane {
 	/**
 	 * The plane owner
 	 */
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private Set<Pilot> pilots;
 	
 	public Plane() {

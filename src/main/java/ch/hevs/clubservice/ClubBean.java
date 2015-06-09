@@ -63,22 +63,8 @@ public class ClubBean implements Club {
 	}
 
 	@Override
-	public List<Plane> getAll() {
+	public List<Plane> getPlanes() {
 		return em.createQuery("FROM Plane").getResultList();
-	}
-	
-	@Override
-	public Plane getById(long id) {
-		
-		Plane p = (Plane) em.createNamedQuery("Plane.getById")
-				.setParameter("planeId", id)
-				.getSingleResult();
-		
-		// lazy initialize flight collection set
-		Hibernate.initialize(p.getFlights());
-		
-
-		return p;
 	}
 
 	@Override

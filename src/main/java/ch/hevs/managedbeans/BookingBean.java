@@ -62,7 +62,7 @@ public class BookingBean
 		// create lists for dropdown menu
 		departureSites = club.getDepartureSites();
 		arrivalSites = club.getArrivalSites();
-		planes = club.getAll();
+		planes = club.getPlanes();
 
 		
 		// get incoming flights
