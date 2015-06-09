@@ -39,7 +39,7 @@
 									<div class="form-group">
 										<h:outputLabel value="Departure date" for="book-date"></h:outputLabel>
 										<h:inputText value="#{bookingBean.departureDate}" p:type="date" p:placeholder="yyyy-mm-dd" id="book-date" styleClass="form-control" required="true" requiredMessage="Please, enter an estimated date of departure" maxlength="10">
-											<f:convertDateTime pattern="yyyy-M-d" type="date" />
+											<f:convertDateTime pattern="yyyy-MM-dd" type="date" />
 										</h:inputText> 
 										<h:message for="book-date" errorClass="input-error" infoClass="input-info" />
 									</div>

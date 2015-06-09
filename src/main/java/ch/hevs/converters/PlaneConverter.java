@@ -22,7 +22,7 @@ public class PlaneConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
 		
-		if (value == null || value.isEmpty()) {
+		if (value == null || value.isEmpty() || value.contains("Choose")) {
             return null;
         }
 
