@@ -1,7 +1,6 @@
 package ch.hevs.clubservice;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -65,7 +64,6 @@ public interface Club {
 	 */
 	public List<Plane> getPlanes();
 	
-	
 	/**
 	 * Book a new flight
 	 * 
@@ -77,7 +75,6 @@ public interface Club {
 	 * @throws Exception
 	 */
 	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception;
-	
 	
 	/**
 	 * Get a list of incoming flights
@@ -101,7 +98,6 @@ public interface Club {
 	 * @param pilot
 	 */
 	public void removePilot(Long id);
-	
 	
 	/**
 	 * Find a site by his Id

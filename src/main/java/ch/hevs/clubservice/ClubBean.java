@@ -43,12 +43,12 @@ public class ClubBean implements Club {
 	
 	@Override
 	public List<Flight> getFlights() {
-		return em.createQuery("FROM FLIGHT").getResultList();
+		return em.createNamedQuery("Flight.getAll").getResultList();
 	}
 
 	@Override
 	public List<Site> getSites() {
-		return em.createQuery("FROM Site").getResultList();
+		return em.createNamedQuery("Site.getAll").getResultList();
 	}
 	
 	@Override
@@ -64,7 +64,7 @@ public class ClubBean implements Club {
 
 	@Override
 	public List<Plane> getPlanes() {
-		return em.createQuery("FROM Plane").getResultList();
+		return em.createNamedQuery("Plane.getAll").getResultList();
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class ClubBean implements Club {
 
 	@Override
 	public List<Pilot> getPilots() {
-		return em.createQuery("FROM Pilot").getResultList();
+		return em.createNamedQuery("Pilot.getAll").getResultList();
 	}
 
 	@Override

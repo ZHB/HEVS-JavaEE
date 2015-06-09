@@ -21,6 +21,10 @@ import javax.validation.constraints.Pattern;
 	@NamedQuery(
 			name="Pilot.getByCallsign", 
 			query="SELECT p FROM Pilot p WHERE p.callsign = :callsign"
+	),
+	@NamedQuery(
+			name="Pilot.getAll", 
+			query="SELECT p FROM Pilot p"
 	)
 })
 @Entity

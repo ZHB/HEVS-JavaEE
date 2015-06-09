@@ -11,11 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@NamedQueries({
+	@NamedQuery(
+			name="Plane.getAll", 
+			query="SELECT p FROM Plane p"
+	)
+})
 public class Plane {
 
 	@Id
