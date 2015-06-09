@@ -24,6 +24,7 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
+									<th>Gender</th>
 									<th>Callsign</th>
 									<th>Firstname</th>
 									<th>Lastname</th>
@@ -36,8 +37,11 @@
 						    	<c:forEach var="pilot" items="#{ manageBean.pilots }"> 
 						    		<tr>
 									  <th scope="row">
-									  		<h:outputText value="${pilot.callsign}" />
+									  		<h:outputText value="${pilot.gender}" />
 									  </th>
+									  <td>
+									  	<h:outputText value="${pilot.callsign}" />
+									  </td>
 									  <td>
 									  	<h:outputText value="${pilot.firstname}" />
 									  </td>

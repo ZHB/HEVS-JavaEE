@@ -68,7 +68,7 @@ public class Pilot {
 	/**
 	 * Aircraft belonging to the pilot
 	 */
-	@ManyToMany(cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy="pilots", cascade = CascadeType.REMOVE)
 	private Set<Plane> planes;
 
 	/**
