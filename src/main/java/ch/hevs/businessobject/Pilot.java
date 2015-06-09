@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @NamedQueries({
 	@NamedQuery(
@@ -80,6 +79,14 @@ public class Pilot {
 		super();
 	}
 
+	/**
+	 * Construct a new pilot object
+	 * 
+	 * @param firstname	the pilot name
+	 * @param lastname	the pilot firstname
+	 * @param gender	the pilot <code>Gender</code>
+	 * @param licence	the pilot <code>Licence</code>
+	 */
 	public Pilot(String firstname, String lastname, Gender gender,
 			String licence) {
 		super();
