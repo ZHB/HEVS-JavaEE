@@ -98,13 +98,8 @@ public class ManageBean {
 		return "adminForm";
 	}
 	
-	public String removePilot() {	
-		if(pilotId == null) {
-			return null;
-		}
-		
-		System.out.println("#############" + pilotId);
-		club.removePilot(pilotId);
+	public String removePilot(Pilot pilot) {	
+		club.removePilot(pilot.getId());
 		return "adminForm";
 	}
 }
