@@ -73,7 +73,7 @@
 					    	<h:outputLabel value="Licence expiration date" for="pilot-licence-expiration-date"></h:outputLabel>
 					    </div>
 					    <div class="col-sm-10">
-					    	<h:inputText value="#{manageBean.licence.dateOfIssue}" p:type="date" id="pilot-licence-expiration-date" styleClass="form-control" required="true">
+					    	<h:inputText value="#{manageBean.licence.dateOfIssue}" p:type="date" id="pilot-licence-expiration-date" styleClass="form-control">
 								<f:convertDateTime pattern="yyyy-MM-dd" type="date" />
 							</h:inputText>
 							<h:message for="pilot-licence-expiration-date" errorClass="input-error" infoClass="input-info" />
