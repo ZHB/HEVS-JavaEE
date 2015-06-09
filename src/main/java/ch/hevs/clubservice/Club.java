@@ -106,12 +106,24 @@ public interface Club {
 	/**
 	 * Find a site by his Id
 	 * 
-	 * @param id
-	 * @return
+	 * @param id	the site id
+	 * @return Site the founded <code>Site</code>
 	 */
-	 public Site findById(Long id);
+	 public Site getSiteById(Long id);
 	 
-	 public Plane findPlaneById(Long id);
+	 /**
+	  * Find a plane by his id
+	  * 
+	  * @param id
+	  * @return	Plane the founded <code>Plane</code>
+	  */
+	 public Plane getPlaneById(Long id);
 	 
+	 /**
+	  * Find a pilot by his id
+	  * 
+	  * @param id	The pilot id
+	  * @return Pilot	the founded <code>Pilot</code>
+	  */
 	 public Pilot getPilotById(Long id);
 }

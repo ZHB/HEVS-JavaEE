@@ -28,7 +28,7 @@ public class PlaneConverter implements Converter {
 
         try {
               
-            Object obj =  club.findPlaneById(Long.valueOf(value));
+            Object obj =  club.getPlaneById(Long.valueOf(value));
             
             return obj;
         } catch (Exception e) {

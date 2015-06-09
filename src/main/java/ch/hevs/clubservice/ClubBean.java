@@ -116,7 +116,7 @@ public class ClubBean implements Club {
 	}
 
 	@Override
-	public Site findById(Long id) {
+	public Site getSiteById(Long id) {
 		
 		Site s = em.find(Site.class, id);
 		
@@ -124,7 +124,7 @@ public class ClubBean implements Club {
 	}
 
 	@Override
-	public Plane findPlaneById(Long id) {
+	public Plane getPlaneById(Long id) {
 		Plane p = em.find(Plane.class, id);
 		
 		// lazy initialize flight collection set

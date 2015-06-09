@@ -31,7 +31,7 @@ public class SiteConverter implements Converter {
 
         try {
               
-            Object obj =  club.findById(Long.valueOf(value));
+            Object obj =  club.getSiteById(Long.valueOf(value));
             
             return obj;
         } catch (Exception e) {

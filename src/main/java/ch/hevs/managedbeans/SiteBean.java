@@ -30,7 +30,7 @@ public class SiteBean
 		FacesContext fc = FacesContext.getCurrentInstance();
 		long id = Long.parseLong(getSiteParam(fc));
 		
-		site = club.findById(id);
+		site = club.getSiteById(id);
     }
 
 	public Site getSite() {
