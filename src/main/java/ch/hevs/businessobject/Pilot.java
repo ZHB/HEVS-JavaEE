@@ -31,29 +31,45 @@ public class Pilot {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	/**
+	 * The pilot callsign
+	 */
 	@NotNull(message = "Please, enter a pilot callsign")
 	@Pattern( regexp = "[A-Z]{3}", message = "Please, enter a three letter pilot callsign (UPPERCASE)" )
-	@Size(min=3, max=3)
 	private String callsign;
 	
+	/**
+	 * The pilot firstname
+	 */
 	@NotNull(message = "Please, enter the pilot firstname")
 	private String firstname;
 	
+	/**
+	 * The pilot lastname
+	 */
 	@NotNull(message = "Please, enter the pilot lastname")
 	private String lastname;
 	
+	/**
+	 * The pilot gender
+	 */
 	@NotNull(message = "Please, enter the pilot gender")
 	private Gender gender;
 	
+	/**
+	 * Flights operated by the pilot
+	 */
 	@OneToMany(mappedBy="pilot", cascade = CascadeType.REMOVE)
 	private Set<Flight> flights;
 	
+	/**
+	 * Aircraft belonging to the pilot
+	 */
 	@ManyToMany(cascade = CascadeType.REMOVE)
 	private Set<Plane> planes;
 
 	/**
-	 * OneToOne relation
-	 * Site departure is mandatory
+	 * The pilot licence
 	 */
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="fk_licence", nullable=false)
@@ -75,7 +91,25 @@ public class Pilot {
 		planes = new HashSet<Plane>();
 	}
 	
+	/**
+	 * Adds a flight as belonging to the pilot.
+	 * 
+	 * @param flight	the <code>Flight</code> that will be added to the pilot
+	 */
+	public void addFlight(Flight flight)
+	{
+		flights.add(flight);
+		flight.setPilot(this);
+	}
 	
+	/**
+	 * Add a license to the pilot
+	 * 
+	 * @param licence	the <code>License</code> to add
+	 */
+	public void addLicence(Licence licence) {
+		this.licence = licence;
+	}
 	
 	public Long getId() {
 		return id;
@@ -84,29 +118,19 @@ public class Pilot {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getCallsign() {
 		return callsign;
 	}
 
+	/**
+	 * Callsign is an unique three uppercase letters that identifies a pilot. 
+	 * It is used to identifiy pilot conversation on radio call
+	 * 
+	 * @param callsign must be three uppercase letters (e.g. HJT)
+	 */
 	public void setCallsign(String callsign) {
 		this.callsign = callsign;
-	}
-
-	public void addFlight(Flight f)
-	{
-		flights.add(f);
-		f.setPilot(this);
-	}
-	
-	
-	/**
-	 * Add a licence to the pilot
-	 * 
-	 * @param l
-	 */
-	public void addLicence(Licence l) {
-		licence = l;
 	}
 
 	public Set<Flight> getFlights() {
@@ -154,12 +178,6 @@ public class Pilot {
 	}
 
 	public void setGender(Gender gender) {
-		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@ " + gender);
 		this.gender = gender;
 	}
-	
-	
-	
-	
 }
