@@ -64,7 +64,11 @@
 	 <role-name>pilot</role-name>
 	</security-role>
 	<security-role>
-	 <description>user</description>
-	 <role-name>user</role-name>
+	 <description>administrator</description>
+	 <role-name>administrator</role-name>
+	</security-role>
+	<security-role>
+	 <description>editor</description>
+	 <role-name>editor</role-name>
 	</security-role>
 </web-app>

@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.component.UIParameter;
 
 import ch.hevs.businessobject.Gender;
 import ch.hevs.businessobject.Licence;
@@ -18,7 +17,6 @@ import ch.hevs.clubservice.Club;
 @ManagedBean(name="manageBean")
 @RequestScoped
 public class ManageBean {
-	
 	
 	@EJB(name = "ManageBean") 
 	private Club club;
@@ -43,6 +41,11 @@ public class ManageBean {
 		site = new Site();
     }
 	
+	/**
+	 * This method is used to load a pilot
+	 * 
+	 * @return
+	 */
 	public String loadPilot() {
 		if(pilotId == null) {
 			return null;
@@ -52,6 +55,11 @@ public class ManageBean {
 	    return null;
 	}
 	
+	/**
+	 * This method is used to load a Site
+	 * 
+	 * @return
+	 */
 	public String loadSite() {
 		if(siteId == null) {
 			return null;
@@ -61,17 +69,20 @@ public class ManageBean {
 	    return null;
 	}
 	
-	
-	
 	/**
 	 * Retrieve a list of Genders
 	 * 
-	 * @return
+	 * @return	an array of Genders
 	 */
 	public Gender[] getGenders() {
 		return Gender.values();
 	}
 
+	/**
+	 * Retrieve a list of SiteType
+	 * 
+	 * @return	an array of SiteType
+	 */
 	public SiteType[] getSiteTypes() {
 		return SiteType.values();
 	}
@@ -124,8 +135,6 @@ public class ManageBean {
 		this.pilots = pilots;
 	}
 	
-	
-	
 	public List<Site> getSites() {
 		return sites;
 	}
@@ -135,8 +144,13 @@ public class ManageBean {
 	}
 
 	/**
-	 * Add a pilot to DB
-	 * @return
+	 * Add or update a <code>Pilot</code> in the database. 
+	 * Add operation : you must give a <code>Pilot</code> without his id set
+	 * 			so, entityManager will add it to the DB
+	 * Update operation : you must giv a <code>Pilot</code> with his id set
+	 * 			so entityManager will know wich entity to update
+	 * 
+	 * @return	The page to display
 	 */
 	public String addOrUpdatePilot() {
 		club.addOrUpdatePilot(pilot, licence);
@@ -144,19 +158,46 @@ public class ManageBean {
 		return "adminForm";
 	}
 	
+	/**
+	 * Remove a pilot from the database. You have to pass the pilot object and
+	 * be careful that the pilot object has his id set otherwise entityManage won't 
+	 * find it
+	 * 
+	 * @param pilot	the <code>Pilot</code> object to delete
+	 * @return The page to display
+	 */
 	public String removePilot(Pilot pilot) {	
 		club.removePilot(pilot.getId());
+		
 		return "adminForm";
 	}
 	
+	/**
+	 * Add or update a <code>Site</code> in the database. 
+	 * Add operation : you must give a <code>Site</code> without his id set
+	 * 			so, entityManager will add it to the DB
+	 * Update operation : you must giv a <code>Site</code> with his id set
+	 * 			so entityManager will know wich entity to update
+	 * 
+	 * @return	The page to display
+	 */
 	public String addOrUpdateSite() {
 		club.addOrUpdateSite(site);
 		
 		return "adminForm";
 	}
 	
+	/**
+	 * Remove a site from the database. You have to pass the site object and
+	 * be careful that the site object has his id set otherwise entityManage won't 
+	 * find it
+	 * 
+	 * @param site	the <code>Site</code> object to delete
+	 * @return The page to display
+	 */
 	public String removeSite(Site site) {	
 		club.removeSite(site.getId());
+		
 		return "adminForm";
 	}
 }

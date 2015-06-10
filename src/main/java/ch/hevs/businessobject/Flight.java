@@ -127,6 +127,15 @@ public class Flight {
 	public void setArrival(Site arrival) {
 		this.arrival = arrival;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 	
 	
