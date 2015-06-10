@@ -163,6 +163,5 @@ public class ClubBean implements Club {
 		em.flush();
 		
 		return site;
-	}
-	
+	}	
 }

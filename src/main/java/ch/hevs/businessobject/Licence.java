@@ -2,17 +2,11 @@ package ch.hevs.businessobject;
 
 import java.util.Date;
 
-import javax.enterprise.inject.Default;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.ws.rs.DefaultValue;
-
 @Entity
 public class Licence {
 	

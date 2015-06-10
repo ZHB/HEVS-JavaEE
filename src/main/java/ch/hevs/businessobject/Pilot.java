@@ -25,6 +25,10 @@ import javax.validation.constraints.Pattern;
 	@NamedQuery(
 			name="Pilot.getAll", 
 			query="SELECT p FROM Pilot p"
+	),
+	@NamedQuery(
+			name="Pilot.getOwnersPlanes", 
+			query="SELECT p FROM Plane p"
 	)
 })
 @Entity
