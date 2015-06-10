@@ -3,7 +3,6 @@ package ch.hevs.managedbeans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.CreateException;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;

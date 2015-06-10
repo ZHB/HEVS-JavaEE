@@ -8,10 +8,14 @@ legend {
 .input-error {
   color: #ff0000;
   margin-top: 10px;
+  list-style: none;
+  padding-left: 0;
 }
 .input-info {
 	color:#bce8f1;
 	margin-top: 10px;
+	list-style: none;
+  	padding-left: 0;
 }
 
 .btn-primary {

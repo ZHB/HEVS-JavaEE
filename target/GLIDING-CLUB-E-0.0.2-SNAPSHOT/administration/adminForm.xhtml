@@ -13,7 +13,7 @@
 			<h2>Admin area</h2>
 		</div>
 		<div class="flights-content">
-			<h:messages globalOnly="true" styleClass="input-error" />
+			<h:messages globalOnly="true" styleClass="input-error" infoClass="alert alert-danger" errorClass="alert alert-danger" />
 			<h3>Pilots list</h3>
 			<c:choose>
 				<c:when test="#{ !empty manageBean.pilots }">
