@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/GLIDING-CLUB/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="flightsList.xhtml" x="168" y="60" id="pf14332764479693" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14333617806690 pf14334908621680 pf14336625660892 pf14337034748011" inlinks="pf14337034748011" path="/flightsList.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="showBookingResult.xhtml" x="420" y="96" id="pf14333617806691" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14333617806690" path="/showBookingResult.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="administration/adminForm.xhtml" x="24" y="264" id="pf14334908621681" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14334908621680 pf14337640677261 pf14337985857631" path="/administration/adminForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="siteDetail.xhtml" x="312" y="253" id="pf14336625372120" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14337640677261" inlinks="pf14336625660892" path="/siteDetail.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pilotForm.xhtml" id="pf14337985857632" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14337985857631" path="/administration/pilotForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="flightsList.xhtml" x="122" y="567" id="pf14332764479693" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14333617806690 pf14334908621680 pf14336625660892 pf14337034748011" inlinks="pf14337034748011" path="/flightsList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="showBookingResult.xhtml" x="338" y="178" id="pf14333617806691" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14333617806690" path="/showBookingResult.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminForm.xhtml" x="554" y="764" id="pf14334908621681" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf14339387565530" inlinks="pf14334908621680 pf14337640677261 pf14337985857631 pf14339387565530 pf14339387565531" path="/administration/adminForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="siteDetail.xhtml" x="338" y="562" id="pf14336625372120" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14337640677261" inlinks="pf14336625660892" path="/siteDetail.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pilotForm.xhtml" x="338" y="967" id="pf14337985857632" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14337985857631" path="/administration/pilotForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="siteForm.xhtml" id="pf14339387565532" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14339387565531" path="/administration/siteForm.xhtml"/>
   <links id="pf14333617806690" target="pf14333617806691" source="pf14332764479693" outcome="bookingSuccess"/>
   <links id="pf14334908621680" target="pf14334908621681" source="pf14332764479693" outcome="adminForm"/>
   <links id="pf14336625660892" target="pf14336625372120" source="pf14332764479693" outcome="siteDetail"/>
-  <links id="pf14337034748011" target="pf14332764479693" source="pf14332764479693" outcome="bookingError"/>
   <links id="pf14337640677261" target="pf14334908621681" source="pf14336625372120" outcome="adminForm"/>
   <links id="pf14337985857631" target="pf14334908621681" source="pf14337985857632" outcome="adminForm" redirect="true"/>
+  <links id="pf14337034748011" target="pf14332764479693" source="pf14332764479693" outcome="bookingError">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14339387565530" target="pf14334908621681" source="pf14334908621681" outcome="adminForm" redirect="true">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14339387565531" target="pf14334908621681" source="pf14339387565532" outcome="adminForm" redirect="true"/>
 </pageflow:Pageflow>

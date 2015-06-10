@@ -52,7 +52,7 @@
 									  		<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
 									  	</h:outputText>
 									  </td>
-									  <td>
+									  <td class="text-right">
 									  	<h:link value="Update" outcome="pilotForm">
 								  			<f:param name="id" value="${pilot.id}" />
 								  		</h:link>
@@ -75,6 +75,69 @@
 						<div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
 						    	<h:link value="Add" outcome="pilotForm" styleClass="btn btn-primary pull-right"></h:link>
+						    </div>
+						  </div>
+					</h:form>
+				</div>
+			</div>
+			<hr />
+			<h3>Sites list</h3>
+			<c:choose>
+				<c:when test="#{!empty manageBean.sites}">
+					<h:form>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Type</th>
+									<th>Name</th>
+									<th>Latitude</th>
+									<th>Longitude</th>
+									<th></th>
+								</tr>
+						 	</thead>
+						  	<tbody>
+						    	<c:forEach var="site" items="#{manageBean.sites}"> 
+						    		<tr>
+									  <th scope="row">
+									  		<h:outputText value="${site.type}" />
+									  </th>
+									   <td>
+									  	<h:outputText value="${site.name}" />
+									  </td>
+									  <td>
+									  	<h:outputText value="${site.latitude}" />
+									  </td>
+									  <td>
+									  	<h:outputText value="${site.longitude}" />
+									  </td>
+									  <td class="text-right">
+									  	<h:link outcome="siteForm">
+								
+											<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+			
+											<f:param name="id" value="${site.id}" />
+								  		</h:link>
+								  		 - 
+								  		<h:commandLink action="#{manageBean.removeSite(site)}" onclick="return confirm('Confirm delete ?');">
+								  			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								  		</h:commandLink>
+									  </td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</h:form>
+				</c:when>
+				<c:otherwise>
+					<p>No Site</p>
+				</c:otherwise>
+			</c:choose>
+			<div class="row">
+				<div class="col-sm-12">
+					<h:form>
+						<div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						    	<h:link value="Add" outcome="siteForm" styleClass="btn btn-primary pull-right"></h:link>
 						    </div>
 						  </div>
 					</h:form>

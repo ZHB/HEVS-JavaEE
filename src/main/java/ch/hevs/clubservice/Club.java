@@ -92,12 +92,21 @@ public interface Club {
 	 */
 	public Pilot addOrUpdatePilot(Pilot pilot, Licence licence);
 	
+	public Site addOrUpdateSite(Site site);
+	
 	/**
-	 * Remove a pilot
+	 * Remove a pilot by his given id
 	 * 
 	 * @param pilot
 	 */
 	public void removePilot(Long id);
+	
+	/**
+	 * Remove a pilot by his given id
+	 * 
+	 * @param id
+	 */
+	public void removeSite(Long id);
 	
 	/**
 	 * Find a site by his Id

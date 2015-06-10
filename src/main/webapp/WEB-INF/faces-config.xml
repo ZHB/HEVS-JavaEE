@@ -42,6 +42,15 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<display-name>siteForm.xhtml</display-name>
+		<from-view-id>/administration/siteForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>adminForm</from-outcome>
+			<to-view-id>/administration/adminForm.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<display-name>adminForm.xhtml</display-name>
 		<from-view-id>/administration/adminForm.xhtml</from-view-id>
 		<navigation-case>

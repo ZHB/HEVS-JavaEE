@@ -149,4 +149,20 @@ public class ClubBean implements Club {
 	    em.remove(p);
 		em.flush();
 	}
+
+	@Override
+	public void removeSite(Long id) {
+		Site s = em.find(Site.class, id);
+	    em.remove(s);
+		em.flush();
+	}
+
+	@Override
+	public Site addOrUpdateSite(Site site) {
+		em.merge(site);		
+		em.flush();
+		
+		return site;
+	}
+	
 }

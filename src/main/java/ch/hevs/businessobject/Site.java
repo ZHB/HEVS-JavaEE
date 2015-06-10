@@ -9,12 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
 	@NamedQuery(
 			name="Site.getAll", 
-			query="SELECT s FROM Site s WHERE s.type LIKE :siteType"
+			query="SELECT s FROM Site s ORDER BY s.type, s.name"
 	),
 	@NamedQuery(
 		name="Site.getAllByType", 
@@ -27,9 +28,16 @@ public class Site implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	@NotNull(message = "Please, enter a site name")
 	private String name;
+	
+	@NotNull(message = "Please, enter a site latitude")
 	private double latitude;
+	
+	@NotNull(message = "Please, enter a site longitude")
 	private double longitude;
+	
+	@NotNull(message = "Please, enter a site type")
 	private SiteType type;
 	
 	public Site() {
