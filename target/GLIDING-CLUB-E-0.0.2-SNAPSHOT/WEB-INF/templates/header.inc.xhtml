@@ -1,8 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
     
 <body>
 <div class="container">
@@ -12,8 +14,15 @@
 		</div>
 		<div class="col-xs-6">
 			<ul class="user-area list-inline pull-right">
-	   			<li class="active">
-	   				<h:link value="Admin area" outcome="adminForm" />
+			 	<li>
+			 		<c:choose>
+						<c:when test="#{ !empty request.remoteUser }">
+							<a href="#"><h:link value="#{request.remoteUser}" outcome="flightsList" /></a>
+						</c:when>
+						<c:otherwise>
+							<h:link value="Admin area" outcome="adminForm" />
+						</c:otherwise>
+					</c:choose>
 			 	</li>
 			</ul>
 		</div>

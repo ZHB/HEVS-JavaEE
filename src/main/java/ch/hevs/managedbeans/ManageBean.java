@@ -14,12 +14,17 @@ import ch.hevs.businessobject.Site;
 import ch.hevs.businessobject.SiteType;
 import ch.hevs.clubservice.Club;
 
+
 @ManagedBean(name="manageBean")
 @RequestScoped
 public class ManageBean {
 	
+	
+	
 	@EJB(name = "ManageBean") 
 	private Club club;
+	
+	
 	
 	private Long pilotId;
 	private Long siteId;
@@ -40,7 +45,7 @@ public class ManageBean {
 		licence = new Licence();
 		site = new Site();
     }
-	
+
 	/**
 	 * This method is used to load a pilot
 	 * 
@@ -195,9 +200,9 @@ public class ManageBean {
 	 * @param site	the <code>Site</code> object to delete
 	 * @return The page to display
 	 */
-	public String removeSite(Site site) {	
+	 public String removeSite(Site site) {	
 		club.removeSite(site.getId());
 		
 		return "adminForm";
-	}
+	 }
 }

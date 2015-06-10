@@ -1,13 +1,22 @@
 package ch.hevs.clubservice;
 
+import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Hibernate;
 
@@ -23,6 +32,9 @@ public class ClubBean implements Club {
 
 	@PersistenceContext(name = "BankPU")
 	private EntityManager em;
+	
+	@Resource
+	private SessionContext ctx;
 	
 	@Override
 	public Pilot getPilotByCallsign(String callsign) {
@@ -144,17 +156,32 @@ public class ClubBean implements Club {
 	}
 
 	@Override
-	public void removePilot(Long id) {
+	public boolean removePilot(Long id) {
+		if (!ctx.isCallerInRole("administrator")) {    
+        	return false;
+            //throw new SecurityException("You are not alowed to do that");
+        } 
+		
 		Pilot p = em.find(Pilot.class, id);
 	    em.remove(p);
 		em.flush();
+		
+		return true;
 	}
 
 	@Override
-	public void removeSite(Long id) {
+	public boolean removeSite(Long id) {
+        
+        if (!ctx.isCallerInRole("administrator")) {    
+        	return false;
+            //throw new SecurityException("You are not alowed to do that");
+        } 
+        
 		Site s = em.find(Site.class, id);
 	    em.remove(s);
 		em.flush();
+		
+		return true;
 	}
 
 	@Override
