@@ -3,9 +3,13 @@ package ch.hevs.managedbeans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.CreateException;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import ch.hevs.businessobject.Gender;
 import ch.hevs.businessobject.Licence;
@@ -172,7 +176,12 @@ public class ManageBean {
 	 * @return The page to display
 	 */
 	public String removePilot(Pilot pilot) {	
-		club.removePilot(pilot.getId());
+		try {
+			club.removePilot(pilot.getId());
+		} catch (EJBException e){
+			FacesMessage message = new FacesMessage(e.getMessage());
+			FacesContext.getCurrentInstance().addMessage( null, message );
+		} 
 		
 		return "adminForm";
 	}
@@ -201,8 +210,13 @@ public class ManageBean {
 	 * @return The page to display
 	 */
 	 public String removeSite(Site site) {	
-		club.removeSite(site.getId());
-		
-		return "adminForm";
+		 try {
+			 club.removeSite(site.getId());
+	     } catch (EJBException e){
+	    	  FacesMessage message = new FacesMessage(e.getMessage());
+		      FacesContext.getCurrentInstance().addMessage( null, message );
+		 } 
+		 
+		 return "adminForm";
 	 }
 }

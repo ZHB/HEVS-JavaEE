@@ -56,7 +56,7 @@
 		<navigation-case>
 			<from-outcome>adminForm</from-outcome>
 			<to-view-id>/administration/adminForm.xhtml</to-view-id>
-			<redirect />
+			
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

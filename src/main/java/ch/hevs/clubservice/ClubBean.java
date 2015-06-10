@@ -1,5 +1,6 @@
 package ch.hevs.clubservice;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJBException;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
@@ -26,6 +28,7 @@ import ch.hevs.businessobject.Pilot;
 import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
 import ch.hevs.businessobject.SiteType;
+import ch.hevs.exception.NotAllowedToDeleteException;
 
 @Stateless
 public class ClubBean implements Club {
@@ -158,28 +161,37 @@ public class ClubBean implements Club {
 	@Override
 	public boolean removePilot(Long id) {
 		if (!ctx.isCallerInRole("administrator")) {    
-        	return false;
-            //throw new SecurityException("You are not alowed to do that");
+        	throw (EJBException) new NotAllowedToDeleteException("You are not allowed to delete pilots !");
         } 
 		
 		Pilot p = em.find(Pilot.class, id);
 	    em.remove(p);
 		em.flush();
 		
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("adminForm.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
 
 	@Override
 	public boolean removeSite(Long id) {
-        
         if (!ctx.isCallerInRole("administrator")) {    
-        	return false;
-            //throw new SecurityException("You are not alowed to do that");
+        	throw (EJBException) new NotAllowedToDeleteException("You are not allowed to delete sites !");
         } 
         
 		Site s = em.find(Site.class, id);
 	    em.remove(s);
 		em.flush();
+		
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("adminForm.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		return true;
 	}
