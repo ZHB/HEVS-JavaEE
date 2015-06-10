@@ -28,9 +28,7 @@ import ch.hevs.clubservice.Club;
 @RequestScoped
 public class BookingBean
 {
-	private String planeName;
-	private long planeId;
-	
+
 	
 	private List<Flight> incomingFlights;
 	
@@ -118,26 +116,6 @@ public class BookingBean
 		this.planes = planes;
 	}
 
-	public String getPlaneName() {
-		return planeName;
-	}
-
-	public void setPlaneName(String planeName) {
-		// update plane id
-		planeId = Long.valueOf(planeName).longValue();
-		
-		this.planeName = planeName;
-	}
-
-	public double getPlaneId() {
-		return this.planeId;
-	}
-	
-	public void setPlaneId(long planeId) {
-		
-		this.planeId = planeId;
-	}
-	
 	public String getPilotCallsign() {
 		return pilotCallsign;
 	}
@@ -173,10 +151,6 @@ public class BookingBean
 				FacesMessage message = new FacesMessage( "Please, select a departure and arrival site");
 		        FacesContext.getCurrentInstance().addMessage( null, message );
 			} else {
-				
-				
-				//Plane plane = club.getById(planeId);
-				
 				// get the pilot by his callsign
 				Pilot pilot = club.getPilotByCallsign(pilotCallsign);
 				if(pilot == null) {
@@ -190,8 +164,7 @@ public class BookingBean
 				
 				Calendar calDepartureDate = Calendar.getInstance();
 				calDepartureDate.setTime(departureDate);
-				
-				
+								
 				// set the departure date/time from the submitted departure date and time
 				Calendar calDepartureDateTime = Calendar.getInstance();
 				calDepartureDateTime.set(
