@@ -53,11 +53,14 @@
 									  	</h:outputText>
 									  </td>
 									  <td class="text-right">
-									  	<h:link value="Update" outcome="pilotForm">
+									  	<h:link outcome="pilotForm">
+									  		<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 								  			<f:param name="id" value="${pilot.id}" />
 								  		</h:link>
 								  		 - 
-								  		<h:commandLink value="Delete" action="#{manageBean.removePilot(pilot)}" onclick="return confirm('Confirm delete ?');" />
+								  		<h:commandLink action="#{manageBean.removePilot(pilot)}" onclick="return confirm('Confirm delete ?');">
+								  			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								  		</h:commandLink>
 									  </td>
 									</tr>
 								</c:forEach>
@@ -112,9 +115,7 @@
 									  </td>
 									  <td class="text-right">
 									  	<h:link outcome="siteForm">
-								
 											<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-			
 											<f:param name="id" value="${site.id}" />
 								  		</h:link>
 								  		 - 
