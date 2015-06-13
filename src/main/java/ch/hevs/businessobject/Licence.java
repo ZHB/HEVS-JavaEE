@@ -14,9 +14,17 @@ public class Licence {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	/**
+	 * Represent the license date of issue. That's the date 
+	 * that indicate the license is invalid
+	 */
 	@NotNull(message = "Please, enter the license date of issue")
 	private Date dateOfIssue;
 	
+	/**
+	 * Indicates the pilot certification number.
+	 * The number must be six digits length
+	 */
 	@NotNull(message = "Please, enter the license certification number")
 	private int certificationNumber;
 	

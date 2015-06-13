@@ -19,6 +19,10 @@ public class SiteConverter implements Converter {
 	@Inject
     private Club club; 
 	
+	/**
+	 * Method used to convert a string id to his object in 
+	 * database
+	 */
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
@@ -40,6 +44,9 @@ public class SiteConverter implements Converter {
         }
 	}
 
+	/**
+	 * Method used to convert a given object to a string id representation
+	 */
 	@Override
 	public String getAsString(FacesContext context, UIComponent component,
 			Object value) {

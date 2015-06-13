@@ -15,14 +15,18 @@ import ch.hevs.clubservice.Club;
 @NoneScoped
 public class SiteBean
 {
+	/**
+	 * The current site to display
+	 */
 	private Site site;
-	
 	
 	@EJB(name = "ClubBean") 
 	private Club club;
 	
 	/**
-	 * 
+	 * This method is called after the class instantiation
+	 * and after the constructor call to be sure that the bean was
+	 * fully initialized before doing calls
 	 */
 	@PostConstruct
     public void initialize() {

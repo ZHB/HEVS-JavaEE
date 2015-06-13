@@ -111,6 +111,10 @@ public class Plane {
 		f.setPlane(this);
 	}	
 	
+	/**
+	 * This equal method is used by the Plane converter to find the 
+	 * correct Plane entity by a given id
+	 */
 	@Override
 	public boolean equals(Object object) {
         return (object instanceof Plane) && (id != null) 

@@ -23,14 +23,14 @@ public interface Club {
 	public Pilot getPilotByCallsign(String callsign);
 	
 	/**
-	 * Get all pilots list
+	 * Get all list of all pilots
 	 * 
 	 * @return	a <code>List</code> of planes
 	 */
 	public List<Pilot> getPilots();
 	
 	/**
-	 * Get all flights list
+	 * Get a list of flights
 	 * 
 	 * @return a <code>List</code> of flights
 	 */
@@ -67,14 +67,14 @@ public interface Club {
 	/**
 	 * Book a new flight
 	 * 
-	 * @param departure
-	 * @param arrival
-	 * @param plane
-	 * @param pilot
-	 * @return
+	 * @param departure	the departure site
+	 * @param arrival	the arrival site
+	 * @param plane		the plane used for this flight
+	 * @param pilot		the pilot who is doing this flight
+	 * @return	flight 	the booked flight
 	 * @throws Exception
 	 */
-	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception;
+	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date);
 	
 	/**
 	 * Get a list of incoming flights
@@ -92,6 +92,14 @@ public interface Club {
 	 */
 	public Pilot addOrUpdatePilot(Pilot pilot, Licence licence);
 	
+	/**
+	 * Add a new site in the database or update an
+	 * existing one if the given site id correspond to 
+	 * an existing one in the db
+	 * 
+	 * @param site	the site to update or add
+	 * @return	site the updated site
+	 */
 	public Site addOrUpdateSite(Site site);
 	
 	/**

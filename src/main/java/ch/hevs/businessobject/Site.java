@@ -25,15 +25,27 @@ public class Site {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	/**
+	 * The site full name
+	 */
 	@NotNull(message = "Please, enter a site name")
 	private String name;
 	
+	/**
+	 * The site latitude
+	 */
 	@NotNull(message = "Please, enter a site latitude")
 	private double latitude;
 	
+	/**
+	 * The site longitude
+	 */
 	@NotNull(message = "Please, enter a site longitude")
 	private double longitude;
 	
+	/**
+	 * The site type. For example departure or arrival.
+	 */
 	@NotNull(message = "Please, enter a site type")
 	private SiteType type;
 	
@@ -89,11 +101,14 @@ public class Site {
 		this.type = type;
 	}
 	
+	/**
+	 * This equal method is used by the converter to convert 
+	 * a given String id to this Site object.
+	 */
 	@Override
 	public boolean equals(Object object) {
         return (object instanceof Site) && (id != null) 
              ? id.equals(((Site) object).id) 
              : (object == this);
-    }
-	
+    }	
 }

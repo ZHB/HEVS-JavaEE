@@ -145,6 +145,41 @@
 					</h:form>
 				</div>
 			</div>
+			<hr />
+			<h3>Planes list</h3>
+			<c:choose>
+				<c:when test="#{!empty manageBean.planes}">
+					<h:form>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Model</th>
+									<th>Type</th>
+									<th>Price</th>
+								</tr>
+						 	</thead>
+						  	<tbody>
+						    	<c:forEach var="plane" items="#{manageBean.planes}"> 
+						    		<tr>
+										<th scope="row">
+												<h:outputText value="${plane.model}" />
+										</th>
+										 <td>
+											<h:outputText value="${plane.type}" />
+										</td>
+										<td>
+											<h:outputText value="${plane.price}" />
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</h:form>
+				</c:when>
+				<c:otherwise>
+					<p>No Plane</p>
+				</c:otherwise>
+			</c:choose>
 		</div>
     </ui:define>
 </ui:composition>

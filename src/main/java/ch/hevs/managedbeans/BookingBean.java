@@ -20,23 +20,45 @@ import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
 import ch.hevs.clubservice.Club;
 
-/**
- * TransferBean.java
- * 
- */
 @ManagedBean(name="bookingBean")
 @RequestScoped
 public class BookingBean
 {
-
+	/**
+	 * The plane used to do the flight
+	 */
+	private Plane plane;
 	
+	/**
+	 * The arrival site of the flight
+	 */
+	private Site departureSite;
+	
+	/**
+	 * The departure site from the flight
+	 */
+	private Site arrivalSite;
+	
+	/**
+	 * A list of incoming flights
+	 * Incoming flights are flights that have a date
+	 * older than current date
+	 */
 	private List<Flight> incomingFlights;
 	
-	private Plane plane;
-	private Site departureSite;
-	private Site arrivalSite;
+	/**
+	 * A list of all planes
+	 */
 	private List<Plane> planes;
+	
+	/**
+	 * The departure site booked
+	 */
 	private List<Site> departureSites;
+	
+	/**
+	 * The arrival site booked
+	 */
 	private List<Site> arrivalSites;
 	
 	/**
@@ -48,12 +70,21 @@ public class BookingBean
 	 * The flight departure time
 	 */
 	private Date departureTime;
-	
+
+	/**
+	 * The pilot callsign used to book the flight
+	 */
 	private String pilotCallsign;
+	
 	
 	@EJB(name = "ClubBean") 
 	private Club club;
 	
+	/**
+	 * This method is called after the class instantiation
+	 * and after the constructor call to be sure that the bean was
+	 * fully initialized before doing calls
+	 */
 	@PostConstruct
     public void initialize() {
  		
@@ -62,7 +93,6 @@ public class BookingBean
 		arrivalSites = club.getArrivalSites();
 		planes = club.getPlanes();
 
-		
 		// get incoming flights
 		incomingFlights = new ArrayList<Flight>();
 		incomingFlights = club.getIncomingFlights();

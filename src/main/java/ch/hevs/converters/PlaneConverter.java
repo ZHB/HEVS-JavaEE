@@ -18,6 +18,10 @@ public class PlaneConverter implements Converter {
 	@Inject
     private Club club; 
 	
+	/**
+	 * Method used to convert a string id to his object in 
+	 * database
+	 */
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
@@ -27,7 +31,6 @@ public class PlaneConverter implements Converter {
         }
 
         try {
-              
             Object obj =  club.getPlaneById(Long.valueOf(value));
             
             return obj;
@@ -37,6 +40,9 @@ public class PlaneConverter implements Converter {
         }
 	}
 
+	/**
+	 * Method used to convert a given object to a string id representation
+	 */
 	@Override
 	public String getAsString(FacesContext context, UIComponent component,
 			Object value) {

@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 @Entity
 public class Hanglider extends Plane {
 
+	/**
+	 * Indicate the hanglider nose angle. 
+	 */
 	private String noseAngle;
-
 	
 	public Hanglider() {
 		super();
@@ -19,7 +21,6 @@ public class Hanglider extends Plane {
 		this.type = "Hang Glider";
 	}
 
-	
 	public String getNoseAngle() {
 		return noseAngle;
 	}

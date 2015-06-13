@@ -67,7 +67,6 @@ public class ClubBean implements Club {
 
 	@Override
 	public List<Site> getArrivalSites() {
-		//return em.createQuery("SELECT s FROM Site s WHERE type LIKE 1").getResultList();
 		return em.createNamedQuery("Site.getAllByType").setParameter("siteType", SiteType.ARRIVAL).getResultList();
 	}
 
@@ -77,7 +76,7 @@ public class ClubBean implements Club {
 	}
 
 	@Override
-	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) throws Exception {
+	public Flight bookFlight(Site departure, Site arrival, Plane plane, Pilot pilot, Calendar date) {
 		
 		Flight f = new Flight();
 		f.setDepartureDate(new java.sql.Date(date.getTimeInMillis()));
@@ -125,11 +124,8 @@ public class ClubBean implements Club {
 	}
 
 	@Override
-	public Site getSiteById(Long id) {
-		
-		Site s = em.find(Site.class, id);
-		
-		return s;
+	public Site getSiteById(Long id) {		
+		return em.find(Site.class, id);
 	}
 
 	@Override

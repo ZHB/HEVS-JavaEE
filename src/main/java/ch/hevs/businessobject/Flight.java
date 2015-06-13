@@ -27,26 +27,31 @@ import javax.persistence.TemporalType;
 	)
 })
 public class Flight {
-
-	//SELECT c.name, p.name FROM Country c JOIN c.capital p 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	/**
+	 * Indicates the flight estimated departure date/time
+	 */
 	@Column(nullable=true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date departureDate;
 	
+	/**
+	 * It's the pilot who is doing the flight
+	 */
 	@ManyToOne
 	private Pilot pilot;
 	
+	/**
+	 * It's the plane who is used to flight with
+	 */
 	@ManyToOne
 	private Plane plane;
 	
 	/**
-	 * OneToOne relation
-	 * Client address is obligatory
+	 * Set a departure site for the flight
 	 */
 	@OneToOne
 	@JoinColumn(name="fk_site_departure", nullable=false)
@@ -54,8 +59,7 @@ public class Flight {
 	
 	
 	/**
-	 * OneToOne relation
-	 * Client address is obligatory
+	 * Set an arrival site for the flight
 	 */
 	@OneToOne
 	@JoinColumn(name="fk_site_arrival", nullable=false)
@@ -78,7 +82,6 @@ public class Flight {
 		return pilot;
 	}
 
-
 	public void setPilot(Pilot pilot) {
 		this.pilot = pilot;
 	}
@@ -90,8 +93,6 @@ public class Flight {
 	public void setPlane(Plane plane) {
 		this.plane = plane;
 	}
-
-
 
 	/**
 	 * Define a new departure Site for this flight
@@ -134,10 +135,4 @@ public class Flight {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-	
-	
 }

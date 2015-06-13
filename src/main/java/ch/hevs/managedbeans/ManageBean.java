@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import ch.hevs.businessobject.Gender;
 import ch.hevs.businessobject.Licence;
 import ch.hevs.businessobject.Pilot;
+import ch.hevs.businessobject.Plane;
 import ch.hevs.businessobject.Site;
 import ch.hevs.businessobject.SiteType;
 import ch.hevs.clubservice.Club;
@@ -22,27 +23,30 @@ import ch.hevs.clubservice.Club;
 @RequestScoped
 public class ManageBean {
 	
-	
-	
 	@EJB(name = "ManageBean") 
 	private Club club;
-	
-	
 	
 	private Long pilotId;
 	private Long siteId;
 	
 	private List<Pilot> pilots;
 	private List<Site> sites;
+	private List<Plane> planes;
 	
 	private Pilot pilot;
 	private Licence licence;
 	private Site site;
 
+	/**
+	 * This method is called after the class instantiation
+	 * and after the constructor call to be sure that the bean was
+	 * fully initialized before doing calls
+	 */
 	@PostConstruct
     public void initialize() {
 		pilots = club.getPilots();
 		sites = club.getSites();
+		setPlanes(club.getPlanes());
 		
 		pilot = new Pilot();
 		licence = new Licence();
@@ -149,6 +153,14 @@ public class ManageBean {
 
 	public void setSites(List<Site> sites) {
 		this.sites = sites;
+	}
+	
+	public List<Plane> getPlanes() {
+		return planes;
+	}
+
+	public void setPlanes(List<Plane> planes) {
+		this.planes = planes;
 	}
 
 	/**
